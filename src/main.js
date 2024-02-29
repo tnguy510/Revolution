@@ -1,12 +1,15 @@
+//ask about TypeError with menu buttons
+
+
 "use strict"
 
 // game config
 let config = {
-    type: Phaser.AUTO,
+    type: Phaser.WEBGL,
     width: 1280,
     height: 720,
     pixelArt: true,
-    scene: [ Title, Intro]
+    scene: [Load, Intro]
     //Load, Title, Intro, Classroom, WeekEvents, SpecialEvents
 }
 
