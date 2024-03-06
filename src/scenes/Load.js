@@ -8,6 +8,11 @@ class Load extends Phaser.Scene {
         this.load.path = "./assets/"
 
         //load images
+        this.load.image('Claire', 'characters/Anime_Claire.png')
+        this.load.image('Misha', 'characters/Anime_Misha.png')
+        this.load.image('Rod', 'characters/Anime_Rod.png')
+        this.load.image('Thane', 'characters/Anime_Thane.png')
+        this.load.image('Yu', 'characters/Anime_Yu.png')
 
     }
 
