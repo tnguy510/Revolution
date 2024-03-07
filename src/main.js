@@ -9,7 +9,7 @@ let config = {
     width: 1280,
     height: 720,
     pixelArt: true,
-    scene: [Load, Intro]
+    scene: [Load, Title]
     //Load, Title, Intro, Classroom, WeekEvents, SpecialEvents
 }
 
@@ -30,3 +30,5 @@ let menuConfig = {
         bottom: 5,
     }
 }
+
+var keyUP, keyDOWN

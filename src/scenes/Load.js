@@ -118,6 +118,6 @@ class Load extends Phaser.Scene {
     }
 
     update(){
-        this.scene.start("introScene");
+        this.scene.start("titleScene");
     }
 }
