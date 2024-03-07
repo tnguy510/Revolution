@@ -1,7 +1,62 @@
 [
     [
         {
-
+            "speaker": "minerva",
+            "dialog": "Sitting down you decide to rest your eyes for a seecond and recount what has led up to this moment.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "You are a new student at the esteemed Royal Academy, with today being the first day at the school year. Aside from the hectic move in day your time at the school has been largely uneventful."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Until..."
+        },
+        {
+            "speaker": "claire",
+            "dialog": "Open your eyes at once! That is not funny at all!"
+        },
+        {
+            "speaker": "claire",
+            "dialog": "Excuse me! Are you listening?"
+        },
+        {
+            "speaker": "claire",
+            "dialog": "A mere commoner has the nerve to share a desk with me? Know your place!",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Claire François, your apparent seat neighbor. Noble Daughter to the François house."
+        },
+        {
+            "speaker": "claire",
+            "dialog": "I will not stand for this. I order you to move at once!"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Even if you wanted to, the seats are assigned. Both for organization and so student won't try to sit next to each other to disrupt the class."
+        },
+        {
+            "speaker": "claire",
+            "dialog": "Well?"
+        },
+        {
+            "speaker": "",
+            "dialog": ""
+        },
+        {
+            "speaker": "",
+            "dialog": ""
+        },
+        {
+            "speaker": "",
+            "dialog": ""
+        },
+        {
+            "speaker": "",
+            "dialog": ""
         }
     ]
 ]

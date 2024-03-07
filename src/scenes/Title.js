@@ -45,7 +45,7 @@ class Title extends Phaser.Scene {
         const currentButton = this.buttons[this.selectedButtonIndex]
 
 	    // set the current selected button to a white tint
-	    currentButton.setTintFill(0xffffff)
+	    currentButton.setTint(0xffffff)
 
 	    //const button = this.buttons.get(index)
         const button = this.buttons[index]

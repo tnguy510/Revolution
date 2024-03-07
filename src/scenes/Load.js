@@ -8,18 +8,33 @@ class Load extends Phaser.Scene {
         this.load.path = "./assets/"
 
         //load images
-        this.load.image('Claire', 'characters/Anime_Claire.png')
-        this.load.image('Misha', 'characters/Anime_Misha.png')
-        this.load.image('Rod', 'characters/Anime_Rod.png')
-        this.load.image('Thane', 'characters/Anime_Thane.png')
-        this.load.image('Yu', 'characters/Anime_Yu.png')
+        this.load.image('Claire', 'img/characters/Anime_Claire.png')
+        this.load.image('Misha', 'img/characters/Anime_Misha.png')
+        this.load.image('Rod', 'img/characters/Anime_Rod.png')
+        this.load.image('Thane', 'img/characters/Anime_Thane.png')
+        this.load.image('Yu', 'img/characters/Anime_Yu.png')
 
-        this.load.image('dialogbox', 'dialogbox.png')
+        this.load.image('minerva', 'img/characters/minerva.png')
+
+        this.load.image('dialogbox', 'img/dialogbox.png')
+        this.load.image('classroomBG', 'img/BGs/classroom_BG.png')
+
+        // load JSON (ie dialog text)
+        this.load.json('introDialog', 'json/intro.json')
+
+        // load bitmap font
+        this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
 
     }
 
     create(){
 
+    }
+
+    
+
+    update(){
+        this.scene.start("sceneKeys");
     }
 
     typeText(scene) {
@@ -122,9 +137,5 @@ class Load extends Phaser.Scene {
             scene.dialogLine++                               // increment dialog line
             scene.dialogLastSpeaker = scene.dialogSpeaker     // set past speaker
         }
-    }
-
-    update(){
-        this.scene.start("sceneKeys");
     }
 }
