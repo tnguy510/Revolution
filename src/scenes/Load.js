@@ -14,6 +14,8 @@ class Load extends Phaser.Scene {
         this.load.image('Thane', 'characters/Anime_Thane.png')
         this.load.image('Yu', 'characters/Anime_Yu.png')
 
+        this.load.image('dialogbox', 'dialogbox.png')
+
     }
 
     create(){
@@ -123,6 +125,6 @@ class Load extends Phaser.Scene {
     }
 
     update(){
-        this.scene.start("titleScene");
+        this.scene.start("sceneKeys");
     }
 }

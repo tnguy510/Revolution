@@ -47,12 +47,25 @@ class Intro extends Phaser.Scene {
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
        
         // ready the character dialog images offscreen
-        this.homer = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'homer').setOrigin(0, 1)
+        this.claire = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'Claire').setOrigin(0, 1)
+        this.misha = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'Misha').setOrigin(0, 1)
+        this.rod = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'Rod').setOrigin(0, 1)
+        this.thane = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'Thane').setOrigin(0, 1)
+        this.yu = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'Yu').setOrigin(0, 1)
        
         // input
         cursors = this.input.keyboard.createCursorKeys()
 
         // start first dialog conversation
-        Load.typeText(this)        
+        this.typeText()     
+        console.log("intro")   
     }
+
+    update() {
+        // check for spacebar press
+        if(Phaser.Input.Keyboard.JustDown(cursors.space) && !this.dialogTyping) {
+            this.typeText() // trigger dialog
+        }
+    }
+    
 }

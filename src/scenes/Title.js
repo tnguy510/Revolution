@@ -37,6 +37,7 @@ class Title extends Phaser.Scene {
         this.selectButton(0)
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP)
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN)
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
     }
 
     selectButton(index){
@@ -76,21 +77,19 @@ class Title extends Phaser.Scene {
     }
 
     confirmSelection(){
-
+        if(this.selectedButtonIndex == 0){
+            this.scene.start("introScene");
+        }
     }
 
     update() {
-        //const upJustPressed = Phaser.Input.Keyboard.JustDown(keyUP)
-        const downJustPressed = Phaser.Input.Keyboard.JustDown(!cursors.down)
-        const spaceJustPressed = Phaser.Input.Keyboard.JustDown(!cursors.space)
-
         if(Phaser.Input.Keyboard.JustDown(keyUP)){
             this.selectNextButton(-1)
         }
         else if (Phaser.Input.Keyboard.JustDown(keyDOWN)) {
             this.selectNextButton(1)
         }
-        else if (spaceJustPressed){
+        else if (Phaser.Input.Keyboard.JustDown(keySPACE)){
             this.confirmSelection()
         }
     }
