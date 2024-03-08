@@ -93,10 +93,6 @@
         },
         {
             "speaker": "teacher",
-            "dialog": "Are there any questions?"
-        },
-        {
-            "speaker": "teacher",
             "dialog": "With that, let us start class."
         }
     ]

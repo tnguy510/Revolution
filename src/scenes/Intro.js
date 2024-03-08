@@ -48,13 +48,8 @@ class Intro extends Phaser.Scene {
         this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
 
         const choice1 = this.add.image(this.OFFSCREEN_X, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
-        //this.add.text(playButton.x, playButton.y, 'Play').setOrigin(0.5)
-        //playButton.setTintFill(0xffffff)
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
-        //this.add.text(settingsButton.x, settingsButton.y, 'Settings').setOrigin(0.5)
-
         const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
-        //this.add.text(creditsButton.x, creditsButton.y, 'Credits').setOrigin(0.5)
        
         // ready the character dialog images offscreen
         this.claire = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Claire').setOrigin(0, 1).setScale(.5)
@@ -118,6 +113,7 @@ class Intro extends Phaser.Scene {
             }
         }
 
+        //leftover from being able to ask teacher to repeat the introdouctions
         //classroom introduction
         if(this.event == "class"){
             if(this.selectedButtonIndex == 0){
@@ -132,7 +128,7 @@ class Intro extends Phaser.Scene {
         }
 
         this.textOption1.destroy()
-        //this.textOption1P2.destroy()
+        this.textOption1P2.destroy()
         this.textOption2.destroy()
         this.textOption3.destroy()
     }
@@ -143,7 +139,6 @@ class Intro extends Phaser.Scene {
             //this.cameras.main.setBackgroundColor(0xffffff)
         //    this.cameras.main.fadeIn(1000)
         //}
-        //Take out until I can figure out how to call on the variable from the json file
         if(this.dialogLine == 2 && this.dialogTyping == false){
             playerName = prompt("Enter your name", "...")
             this.loadScene.typeText(this) 
@@ -158,14 +153,6 @@ class Intro extends Phaser.Scene {
             this.textOption2 = this.add.text(this.buttons[1].x, this.buttons[1].y, 'No, why don\'t YOU move',textConfig).setOrigin(0.5)
             this.textOption3 = this.add.text(this.buttons[2].x, this.buttons[2].y, 'Let\'s try and get along seat neighbor!',textConfig).setOrigin(0.5)
 
-        }
-        if(this.dialogLine == 1 && this.dialogTyping == false){
-            this.moveButtons(centerX)
-            this.event = "class"
-            this.buttonAppear = true
-            this.textOption1 = this.add.text(this.buttons[0].x, this.buttons[0].y - 10, 'Ask to repeat the Schedule.',textConfig).setOrigin(0.5)
-            this.textOption2 = this.add.text(this.buttons[1].x, this.buttons[1].y, 'Ask to repeat information on the Exam',textConfig).setOrigin(0.5)
-            this.textOption3 = this.add.text(this.buttons[2].x, this.buttons[2].y, 'No more questions',textConfig).setOrigin(0.5)
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyUP) && this.buttonAppear == true){
