@@ -18,27 +18,28 @@
             "dialog": "On that topic, Napkins are to be placed over your left shoulder or left wrist and used."
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "teacher",
+            "dialog": "Prince Yu could you please tell us the proper way to eat meat and bread"
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "yu",
+            "dialog": "Yu is just fine. Meat should be cut from the joint while bread should be cut, not broken, and the upper crust offered to the guest.",
+            "newSpeaker": "true"
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "teacher",
+            "dialog": "That is correct, thank you Prince Yu."
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "teacher",
+            "dialog": "It should go without saying but a spoon should be used for broth. Do not ever lift the plate to your mouth."
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "teacher",
+            "dialog": "In that same vain, refrain from placing your elbows on the table while eating."
         },
         {
-            "speaker": "",
+            "speaker": "claire",
             "dialog": ""
         }
     ]

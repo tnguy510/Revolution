@@ -45,6 +45,8 @@ class Load extends Phaser.Scene {
     }
 
     typeText(scene) {
+        this.loadScene = this.scene.get(scene)
+        console.log(this.loadScene)
         // lock input while typing
         scene.dialogTyping = true
 
@@ -83,7 +85,7 @@ class Load extends Phaser.Scene {
                     duration: scene.tweenDuration,
                     ease: 'Linear',
                     onComplete: () => {
-                        if(scene == "introScene"){
+                        if(this.loadScene == "introScene"){
                             scene.scene.start('classScene')
 
                         }

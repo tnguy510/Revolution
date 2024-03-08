@@ -1,6 +1,6 @@
-class Intro extends Phaser.Scene {
+class Classroom extends Phaser.Scene {
     constructor() {
-        super("introScene")
+        super("classScene")
     }
     create(){
         this.DBOX_X = 0      // dialog box x-position
@@ -41,6 +41,7 @@ class Intro extends Phaser.Scene {
         this.OFFSCREEN_Y = 1000
        
         // parse dialog from JSON file
+
         this.dialog = this.cache.json.get('introDialog')
 
         this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
@@ -86,5 +87,33 @@ class Intro extends Phaser.Scene {
 
         this.titleScene.selectButton(0, this)
 
+    }
+    update(){
+        if(Phaser.Input.Keyboard.JustDown(keyUP) && this.buttonAppear == true){
+            this.titleScene.selectNextButton(-1, this)
+        }
+        else if (Phaser.Input.Keyboard.JustDown(keyDOWN)&& this.buttonAppear == true) {
+            this.titleScene.selectNextButton(1, this)
+        }
+        else if (Phaser.Input.Keyboard.JustDown(keySPACE)&& this.buttonAppear == true){
+            this.buttonAppear = false
+            this.moveButtons(this.OFFSCREEN_X)
+            this.confirmSelection()
+            this.loadScene.typeText(this) 
+            if(this.selectedButtonIndex == 0){
+                this.dialogLine += 2
+            }
+            else if(this.selectedButtonIndex == 1){
+                this.dialogLine += 1
+            }
+        }
+
+        // check for spacebar press
+        if(Phaser.Input.Keyboard.JustDown(cursors.space) && !this.dialogTyping) {
+            this.loadScene.typeText(this) // trigger dialog
+            if(this.dialogLine % 3 == 0){
+                this.scene.start('classScene')
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ let config = {
     width: 1280,
     height: 720,
     pixelArt: true,
-    scene: [Load, Keys, Title, Intro]
+    scene: [Load, Keys, Title, Intro, Classroom]
     //Load, Title, Intro, Classroom, WeekEvents, SpecialEvents
 }
 
