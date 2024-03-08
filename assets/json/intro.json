@@ -2,8 +2,12 @@
     [
         {
             "speaker": "narrator",
-            "dialog": "Sitting down you decide to rest your eyes for a seecond and recount what has led up to this moment.",
+            "dialog": "Sitting down you decide to rest your eyes for a second and recount what has led up to this moment.",
             "newSpeaker": "true"
+        },
+        {
+            "speaker":"narrator",
+            "dialog": "First off, what is your name? "
         },
         {
             "speaker": "narrator",
@@ -72,12 +76,28 @@
             "dialog": "My name is Professor Magic I will be your homeroom teacher for this year. First I will go over how your daily schedules will work."
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "teacher",
+            "dialog": "You will have 2 classes everyday separated by a break in between in the Afternoon, save for any special events we may have that day."
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "teacher",
+            "dialog": "Aside from those two classes you will have your Mornings before class and Evenings after class free. "
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "Curfew is 10pm on Weekdays and 12am on Weekends so please be back in your dorms by that time."
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "For this week we will be gauging you all on your knowledge culminating into an exam on Day 1 of next week. "
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "Are there any questions?"
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "With that, let us start class."
         }
     ]
 ]

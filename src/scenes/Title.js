@@ -34,35 +34,32 @@ class Title extends Phaser.Scene {
 
         this.buttonSelector = this.add.image(0, 0, 'cursor-hand')
 
-        this.selectButton(0)
-        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP)
-        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN)
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+        this.selectButton(0, this)
     }
 
-    selectButton(index){
-        //const currentButton = this.buttons.get(this.selectedButtonIndex)
-        const currentButton = this.buttons[this.selectedButtonIndex]
+    selectButton(index, scene){
+        console.log("youre in")
+        const currentButton = scene.buttons[scene.selectedButtonIndex]
 
 	    // set the current selected button to a white tint
 	    currentButton.setTint(0xffffff)
 
 	    //const button = this.buttons.get(index)
-        const button = this.buttons[index]
+        const button = scene.buttons[index]
 
 	    // set the newly selected button to a green tint
 	    button.setTint(0x66ff7f)
 
 	    // move the hand cursor to the right edge
-	    this.buttonSelector.x = button.x + button.displayWidth * 0.5
-	    this.buttonSelector.y = button.y + 10
+	    scene.buttonSelector.x = button.x + button.displayWidth * 0.5
+	    scene.buttonSelector.y = button.y + 10
 
 	    // store the new selected index
-	    this.selectedButtonIndex = index
+	    scene.selectedButtonIndex = index
     }
 
-    selectNextButton(change = 1){
-        let index = this.selectedButtonIndex + change
+    selectNextButton(change = 1, scene){
+        let index = scene.selectedButtonIndex + change
 
         if(index >= 2){
             index = 2
@@ -73,7 +70,7 @@ class Title extends Phaser.Scene {
         }
 
         //console.log(this.selectedButtonIndex)    
-        this.selectButton(index)
+        this.selectButton(index, scene)
     }
 
     confirmSelection(){
@@ -84,10 +81,10 @@ class Title extends Phaser.Scene {
 
     update() {
         if(Phaser.Input.Keyboard.JustDown(keyUP)){
-            this.selectNextButton(-1)
+            this.selectNextButton(-1, this)
         }
         else if (Phaser.Input.Keyboard.JustDown(keyDOWN)) {
-            this.selectNextButton(1)
+            this.selectNextButton(1, this)
         }
         else if (Phaser.Input.Keyboard.JustDown(keySPACE)){
             this.confirmSelection()

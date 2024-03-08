@@ -2,6 +2,7 @@
 //Maybe check typeText to check for what scene it is in and pause the json file in order to
 //ask for player input
 //Errors: Why isnt the speaker image moving out after the new speaker goes in 
+//Why isnt text being detrsoyed in Intro
 
 
 "use strict"
@@ -34,5 +35,16 @@ let menuConfig = {
     }
 }
 
-var keyUP, keyDOWN, keySPACE
-let name
+let textConfig = {
+    fontFamily: 'Arial',
+    fontSize: '16px',
+    color: '#FFFFFF',
+    align: 'middle',
+    padding: {
+        top: 5,
+        bottom: 5,
+    }
+}
+
+var keyUP, keyDOWN, keySPACE, keyENTER
+let playerName

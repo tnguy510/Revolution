@@ -27,6 +27,7 @@ class Load extends Phaser.Scene {
 
         // load bitmap font
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
+        this.load.bitmapFont('mixSerif_font', 'font/MixSerif.png', 'font/MixSerif.xml')
 
     }
 
@@ -79,7 +80,13 @@ class Load extends Phaser.Scene {
                     duration: scene.tweenDuration,
                     ease: 'Linear',
                     onComplete: () => {
-                        scene.scene.start('titleScene')
+                        if(scene == "introScene"){
+                            scene.scene.start('classScene')
+
+                        }
+                        else{
+                            scene.scene.start('titleScene')
+                        }
                     }
                 })
             }
