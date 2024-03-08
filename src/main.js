@@ -35,3 +35,4 @@ let menuConfig = {
 }
 
 var keyUP, keyDOWN, keySPACE
+let name

@@ -1,7 +1,7 @@
 [
     [
         {
-            "speaker": "minerva",
+            "speaker": "narrator",
             "dialog": "Sitting down you decide to rest your eyes for a seecond and recount what has led up to this moment.",
             "newSpeaker": "true"
         },
@@ -43,12 +43,33 @@
             "dialog": "Well?"
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "claire",
+            "dialog": "At least you know your place. However I refuse to share with a simple commoner for more than a day. By tommorrow you will be transferred. "
         },
         {
-            "speaker": "",
-            "dialog": ""
+            "speaker": "claire",
+            "dialog": "ExCUSE ME? How dare a commoner order ME around?"
+        },
+        {
+            "speaker": "claire",
+            "dialog": "This is unacceptable, I will not share a desk with a commoner. "
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Before Claire can say anything else the strike of the clock signals the start of class. Claire begrudgingly takes her seat.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Sitting next to a commoner is far more dignified than causing a ruckus on the first day. "
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "Good morning class! I am pleased to welcome on your first official day here at the Royal Academy!"
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "My name is Professor Magic I will be your homeroom teacher for this year. First I will go over how your daily schedules will work."
         },
         {
             "speaker": "",

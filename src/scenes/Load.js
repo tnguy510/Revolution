@@ -18,6 +18,9 @@ class Load extends Phaser.Scene {
 
         this.load.image('dialogbox', 'img/dialogbox.png')
         this.load.image('classroomBG', 'img/BGs/classroom_BG.png')
+        
+        this.load.image('glass-panel', 'Kennys UI Pack-Space Expansion/PNG/glassPanel.png')
+        this.load.image('cursor-hand', 'Kennys UI Pack-Space Expansion/PNG/cursor_hand.png')
 
         // load JSON (ie dialog text)
         this.load.json('introDialog', 'json/intro.json')
@@ -61,6 +64,7 @@ class Load extends Phaser.Scene {
             // ..but you could create logic to exit if each conversation was self-contained            
             scene.dialogConvo++
         }
+
         
         // make sure we haven't run out of conversations...
         if(scene.dialogConvo >= scene.dialog.length) {

@@ -46,6 +46,15 @@ class Intro extends Phaser.Scene {
         this.dialog = this.cache.json.get('introDialog')
 
         this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
+
+        const choice1 = this.add.image(centerX, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
+        //this.add.text(playButton.x, playButton.y, 'Play').setOrigin(0.5)
+        //playButton.setTintFill(0xffffff)
+        const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
+        //this.add.text(settingsButton.x, settingsButton.y, 'Settings').setOrigin(0.5)
+
+        const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
+        //this.add.text(creditsButton.x, creditsButton.y, 'Credits').setOrigin(0.5)
        
         // ready the character dialog images offscreen
         this.claire = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Claire').setOrigin(0, 1).setScale(.5)
@@ -55,8 +64,7 @@ class Intro extends Phaser.Scene {
         this.yu = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Yu').setOrigin(0, 1).setScale(.5)
 
         this.minerva = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'minerva').setOrigin(0, 1)
-
-               
+              
         // add dialog box sprite
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0)
         this.dialogbox.scaleY = 2
@@ -65,21 +73,64 @@ class Intro extends Phaser.Scene {
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
        
-        
         // input
         cursors = this.input.keyboard.createCursorKeys()
 
         // start first dialog conversation
         this.loadScene = this.scene.get('loadScene')
         this.loadScene.typeText(this)     
+
+        this.titleScene = this.scene.get('titleScene')
+
+        
+        //selection buttons items
+        var buttonAppear = false
+        this.selectedButtonIndex = 0
+
+        this.buttons = [choice1, choice2, choice3]
+
+        this.buttonSelector = this.add.image(0, 0, 'cursor-hand')
+
+        this.titleScene.selectButton(0)
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP)
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN)
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+
     }
 
     update() {
+        //look into how to have the screen still show the textbox
+        //if(this.dialogLine === 4){
+            //this.cameras.main.setBackgroundColor(0xffffff)
+        //    this.cameras.main.fadeIn(1000)
+        //}
+        //Take out until I can figure out how to call on the variable from the json file
+        //if(this.dialogLine == 3 && !name){
+        //    name = prompt("Enter your name", "...")
+        //}
+        if(this.dialogLine == 2 && this.dialogTyping == false){
+            //line 10
+            console.log("youre in")
+            this.buttonAppear = true
+ 
+        }
+
+        if(Phaser.Input.Keyboard.JustDown(keyUP) && this.buttonAppear == true){
+            this.titleScene.selectNextButton(-1)
+        }
+        else if (Phaser.Input.Keyboard.JustDown(keyDOWN)&& this.buttonAppear == true) {
+            this.titleScene.selectNextButton(1)
+        }
+        else if (Phaser.Input.Keyboard.JustDown(keySPACE)&& this.buttonAppear == true){
+            this.buttonAppear = false
+            this.titleScene.confirmSelection()
+        }
+
         // check for spacebar press
         if(Phaser.Input.Keyboard.JustDown(cursors.space) && !this.dialogTyping) {
             this.loadScene.typeText(this) // trigger dialog
         }
-        //var name = prompt
+
     }
     
 }
