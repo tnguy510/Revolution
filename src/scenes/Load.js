@@ -26,7 +26,7 @@ class Load extends Phaser.Scene {
         this.load.json('introDialog', 'json/intro.json')
 
         //classroom topics JSONS
-        this.load.json('Etiquette', 'json/etiquette.json')
+        this.load.json('etiquetteDialog', 'json/etiquette.json')
 
         // load bitmap font
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
@@ -45,8 +45,6 @@ class Load extends Phaser.Scene {
     }
 
     typeText(scene) {
-        this.loadScene = this.scene.get(scene)
-        console.log(this.loadScene)
         // lock input while typing
         scene.dialogTyping = true
 
@@ -85,9 +83,12 @@ class Load extends Phaser.Scene {
                     duration: scene.tweenDuration,
                     ease: 'Linear',
                     onComplete: () => {
-                        if(this.loadScene == "introScene"){
+                        if(scene == scene.scene.get("introScene")){
                             scene.scene.start('classScene')
-
+                
+                        }
+                        else if(scene == scene.scene.get("classScene")){
+                            scene.scene.start('eventScene')
                         }
                         else{
                             scene.scene.start('titleScene')

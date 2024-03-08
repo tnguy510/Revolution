@@ -1,6 +1,6 @@
-class Load extends Phaser.Scene {
+class Events extends Phaser.Scene {
     constructor() {
-        super('sceneEvents')
+        super('eventScene')
     }
 
 }

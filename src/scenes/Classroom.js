@@ -42,7 +42,7 @@ class Classroom extends Phaser.Scene {
        
         // parse dialog from JSON file
 
-        this.dialog = this.cache.json.get('introDialog')
+        this.dialog = this.cache.json.get('etiquetteDialog')
 
         this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
 
@@ -86,7 +86,6 @@ class Classroom extends Phaser.Scene {
         this.buttonSelector = this.add.image(0, 0, 'cursor-hand')
 
         this.titleScene.selectButton(0, this)
-
     }
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyUP) && this.buttonAppear == true){
