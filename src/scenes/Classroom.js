@@ -111,7 +111,7 @@ class Classroom extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(cursors.space) && !this.dialogTyping) {
             this.loadScene.typeText(this) // trigger dialog
             if(this.dialogLine % 3 == 0){
-                this.scene.start('classScene')
+                this.scene.start('eventScene')
             }
         }
     }

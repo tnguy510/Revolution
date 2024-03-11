@@ -38,7 +38,6 @@ class Title extends Phaser.Scene {
     }
 
     selectButton(index, scene){
-        console.log("youre in")
         const currentButton = scene.buttons[scene.selectedButtonIndex]
 
 	    // set the current selected button to a white tint
@@ -76,6 +75,9 @@ class Title extends Phaser.Scene {
     confirmSelection(){
         if(this.selectedButtonIndex == 0){
             this.scene.start("introScene");
+        }
+        if(this.selectedButtonIndex == 1){
+            this.scene.start("settingScene");
         }
     }
 
