@@ -1,7 +1,7 @@
 //Sstarting integration in json file
 //Maybe check typeText to check for what scene it is in and pause the json file in order to
 //ask for player input
-//Errors: Why isnt the speaker image moving out after the new speaker goes in 
+//Errors:
 //Why isnt text being detrsoyed in Intro
 
 

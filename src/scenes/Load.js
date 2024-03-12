@@ -28,6 +28,9 @@ class Load extends Phaser.Scene {
         //classroom topics JSONS
         this.load.json('etiquetteDialog', 'json/etiquette.json')
 
+        //event dialogs
+        this.load.json('thaneDialog', 'json/thaneEvent.json')
+
         // load bitmap font
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
         this.load.bitmapFont('mixSerif_font', 'font/MixSerif.png', 'font/MixSerif.xml')
@@ -153,6 +156,7 @@ class Load extends Phaser.Scene {
             scene.dialogText.maxWidth = scene.TEXT_MAX_WIDTH  // set bounds on dialog
             scene.dialogLine++                               // increment dialog line
             scene.dialogLastSpeaker = scene.dialogSpeaker     // set past speaker
+            //console.log(scene.dialogLine)
         }
     }
 }

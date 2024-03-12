@@ -42,7 +42,12 @@ class Events extends Phaser.Scene {
         this.OFFSCREEN_Y = 1000
        
         // parse dialog from JSON file
+        this.thaneEvent = this.cache.json.get('introDialog')
+
+
+        this.dialogEvents = []
         this.dialog = this.cache.json.get('introDialog')
+        console.log("event scene")
 
         this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
 
