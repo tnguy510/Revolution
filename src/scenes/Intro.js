@@ -88,6 +88,11 @@ class Intro extends Phaser.Scene {
 
         this.titleScene.selectButton(0, this)
 
+        this.textOption1 = this.add.text(centerX, this.buttons[0].y - 10, 'Sorry, seats are assigned.',textConfig).setOrigin(0.5).setVisible(false)
+        this.textOption1P2 = this.add.text(centerX, this.buttons[0].y+10, 'I shouldn\'t break the rules.',textConfig).setOrigin(0.5).setVisible(false)
+        this.textOption2 = this.add.text(centerX, this.buttons[1].y, 'No, why don\'t YOU move',textConfig).setOrigin(0.5).setVisible(false)
+        this.textOption3 = this.add.text(centerX, this.buttons[2].y, 'Let\'s try and get along seat neighbor!',textConfig).setOrigin(0.5).setVisible(false)
+
     }
 
     moveButtons(coords){
@@ -97,6 +102,10 @@ class Intro extends Phaser.Scene {
             currentButton.x = coords
             index++
         }
+        this.textOption1.setVisible(true)
+        this.textOption1P2.setVisible(true)
+        this.textOption2.setVisible(true)
+        this.textOption3.setVisible(true)
     }
 
     confirmSelection(){
@@ -127,10 +136,10 @@ class Intro extends Phaser.Scene {
             }
         }
 
-        this.textOption1.destroy()
-        this.textOption1P2.destroy()
-        this.textOption2.destroy()
-        this.textOption3.destroy()
+        this.textOption1.setVisible(false)
+        this.textOption1P2.setVisible(false)
+        this.textOption2.setVisible(false)
+        this.textOption3.setVisible(false)
     }
 
     update() {
@@ -143,15 +152,15 @@ class Intro extends Phaser.Scene {
             playerName = prompt("Enter your name", "...")
             this.loadScene.typeText(this) 
         }
-        if(this.dialogLine == 10 && this.dialogTyping == false){
+        if(this.dialogLine == 1 && this.dialogTyping == false){
             //line 10
             this.moveButtons(centerX)
             this.event = "claire"
             this.buttonAppear = true
-            this.textOption1 = this.add.text(this.buttons[0].x, this.buttons[0].y - 10, 'Sorry, seats are assigned.',textConfig).setOrigin(0.5)
-            this.textOption1P2 = this.add.text(this.buttons[0].x, this.buttons[0].y+10, 'I shouldn\'t break the rules.',textConfig).setOrigin(0.5)
-            this.textOption2 = this.add.text(this.buttons[1].x, this.buttons[1].y, 'No, why don\'t YOU move',textConfig).setOrigin(0.5)
-            this.textOption3 = this.add.text(this.buttons[2].x, this.buttons[2].y, 'Let\'s try and get along seat neighbor!',textConfig).setOrigin(0.5)
+            this.textOption1.setVisible(true)
+            this.textOption1P2.setVisible(true)
+            this.textOption2.setVisible(true)
+            this.textOption3.setVisible(true)
 
         }
 
