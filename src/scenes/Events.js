@@ -42,18 +42,27 @@ class Events extends Phaser.Scene {
         this.OFFSCREEN_Y = 1000
        
         // parse dialog from JSON file
-        this.thaneEvent = this.cache.json.get('introDialog')
+        this.thaneEvent = this.cache.json.get('thaneDialog')
+        //3 choices should be
+        //Wait for him to finish before talking
+        //Emerge and compliment him on his playing
+        //Leave, this seems like a private moment
+        this.rodEvent = this.cache.json.get('rodDialog')
 
+        this.dialogEvents = [this.thaneEvent, this.rodEvent]
+        var dialogRandom = this.dialogEvents[Phaser.Math.RND.integerInRange(0, 1)]
 
-        this.dialogEvents = []
-        this.dialog = this.cache.json.get('introDialog')
-        console.log("event scene")
+        this.dialog = dialogRandom
 
         this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
 
         const choice1 = this.add.image(this.OFFSCREEN_X, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
+
+        const escButton = this.add.image(centerX + centerX /2, game.config.height - 64, 'glass-panel').setDisplaySize(200, 100)
+        this.add.text(escButton.x - 64, escButton.y - 16, 'ESC to return', textConfig)
+        this.add.text(escButton.x - 64, escButton.y , 'to TitleScreen', textConfig)
        
         // ready the character dialog images offscreen
         this.claire = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Claire').setOrigin(0, 1).setScale(.5)
@@ -90,8 +99,73 @@ class Events extends Phaser.Scene {
 
         this.buttonSelector = this.add.image(0, 0, 'cursor-hand')
 
-        this.titleScene.selectButton(0, this)
+        this.textOption1 = this.add.text(centerX, this.buttons[0].y - 10, 'Wait for him to finish before talking.',textConfig).setOrigin(0.5).setVisible(false)
+        this.textOption2 = this.add.text(centerX, this.buttons[1].y, 'Emerge and compliment him on his playing.',textConfig).setOrigin(0.5).setVisible(false)
+        this.textOption3 = this.add.text(centerX, this.buttons[2].y, 'Leave, this seems like a private moment.',textConfig).setOrigin(0.5).setVisible(false)
 
+        this.titleScene.selectButton(0, this)
+        this.cameras.main.fadeIn(1000)
     }
 
+    confirmSelection(){
+        if(this.selectedButtonIndex == 0){
+            this.dialogLine = 4
+        }
+        else if(this.selectedButtonIndex == 1){
+            this.dialogLine = 13
+        }
+        else if(this.selectedButtonIndex == 2){
+            if(classCounter >= 2){
+                this.scene.start('endDayScene')
+            }
+            else{
+                this.scene.start('classScene')
+            }
+        }
+
+        this.textOption1.setVisible(false)
+        this.textOption2.setVisible(false)
+        this.textOption3.setVisible(false)
+    }
+
+    update(){
+        //ESC to return to Title
+        if(Phaser.Input.Keyboard.JustDown(keyESC)){
+            this.scene.start("titleScene");
+        }
+
+        //Initial Choices
+        if(this.dialogLine == 3 && !this.dialogTyping){
+            this.loadScene.moveButtons(centerX, this)
+            this.buttonAppear = true
+            this.textOption1.setVisible(true)
+            this.textOption2.setVisible(true)
+            this.textOption3.setVisible(true)
+        }
+
+        //Thane likes you Choices
+        if(this.dialogLine == 8 && !this.dialogTyping){
+
+        }
+
+
+        //button Logic
+        if(Phaser.Input.Keyboard.JustDown(keyUP) && this.buttonAppear == true){
+            this.titleScene.selectNextButton(-1, this)
+        }
+        else if (Phaser.Input.Keyboard.JustDown(keyDOWN)&& this.buttonAppear == true) {
+            this.titleScene.selectNextButton(1, this)
+        }
+        else if (Phaser.Input.Keyboard.JustDown(keySPACE)&& this.buttonAppear == true){
+            this.buttonAppear = false
+            this.loadScene.moveButtons(this.OFFSCREEN_X, this)
+            this.confirmSelection()
+            this.loadScene.typeText(this) 
+        }
+
+        // check for spacebar press
+        if(Phaser.Input.Keyboard.JustDown(cursors.space) && !this.dialogTyping) {
+            this.loadScene.typeText(this) // trigger dialog
+        }
+    }
 }

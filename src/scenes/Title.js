@@ -11,11 +11,11 @@ class Title extends Phaser.Scene {
 
     create() {
         // add title text
-        //this.add.text(centerX, centerY - 32, 'REVOLUTION', menuConfig).setOrigin(0.5)
+        this.add.text(centerX, centerY / 3, 'REVOLUTION', menuConfig).setOrigin(0.5)
         //this.add.text(centerX, centerY, 'Press SPACE to start', menuConfig).setOrigin(0.5)
 
         const playButton = this.add.image(centerX, centerY, 'glass-panel').setDisplaySize(300, 100).setInteractive()
-        this.add.text(playButton.x, playButton.y, 'Play').setOrigin(0.5)
+        this.add.text(playButton.x, playButton.y, 'Press SPACE to start').setOrigin(0.5)
         //playButton.setTintFill(0xffffff)
         const settingsButton = this.add.image(playButton.x, playButton.y + 100, 'glass-panel').setDisplaySize(300, 100).setInteractive()
         this.add.text(settingsButton.x, settingsButton.y, 'Settings').setOrigin(0.5)

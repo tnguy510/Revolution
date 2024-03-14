@@ -30,10 +30,15 @@ class Load extends Phaser.Scene {
 
         //event dialogs
         this.load.json('thaneDialog', 'json/thaneEvent.json')
+        this.load.json('rodDialog', 'json/rodEvent.json')
+
 
         // load bitmap font
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
         this.load.bitmapFont('mixSerif_font', 'font/MixSerif.png', 'font/MixSerif.xml')
+
+        classCounter = 2
+        thaneAffection = 0
 
     }
 
@@ -41,10 +46,20 @@ class Load extends Phaser.Scene {
 
     }
 
-    
-
     update(){
         this.scene.start("sceneKeys");
+    }
+
+    moveButtons(coords, scene){
+        var index = 0
+        while(index <= 2){
+            var currentButton = scene.buttons[index]
+            currentButton.x = coords
+            index++
+        }
+        scene.textOption1.setVisible(true)
+        scene.textOption2.setVisible(true)
+        scene.textOption3.setVisible(true)
     }
 
     typeText(scene) {
@@ -86,12 +101,19 @@ class Load extends Phaser.Scene {
                     duration: scene.tweenDuration,
                     ease: 'Linear',
                     onComplete: () => {
+                        console.log(classCounter)
+                        //why is this only incrementing after the Events Json
                         if(scene == scene.scene.get("introScene")){
                             scene.scene.start('classScene')
-                
                         }
                         else if(scene == scene.scene.get("classScene")){
                             scene.scene.start('eventScene')
+                        }
+                        else if(scene == scene.scene.get("eventScene") && classCounter < 2){
+                            scene.scene.start('classScene')
+                        }
+                        else if(classCounter >= 2){
+                            scene.scene.start('endDayScene')
                         }
                         else{
                             scene.scene.start('titleScene')
@@ -156,7 +178,6 @@ class Load extends Phaser.Scene {
             scene.dialogText.maxWidth = scene.TEXT_MAX_WIDTH  // set bounds on dialog
             scene.dialogLine++                               // increment dialog line
             scene.dialogLastSpeaker = scene.dialogSpeaker     // set past speaker
-            //console.log(scene.dialogLine)
         }
     }
 }

@@ -49,6 +49,10 @@ class Classroom extends Phaser.Scene {
         const choice1 = this.add.image(this.OFFSCREEN_X, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
+
+        const escButton = this.add.image(centerX + centerX /2, game.config.height - 64, 'glass-panel').setDisplaySize(200, 100)
+        this.add.text(escButton.x - 64, escButton.y - 16, 'ESC to return', textConfig)
+        this.add.text(escButton.x - 64, escButton.y , 'to TitleScreen', textConfig)
        
         // ready the character dialog images offscreen
         this.claire = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Claire').setOrigin(0, 1).setScale(.5)
@@ -86,25 +90,13 @@ class Classroom extends Phaser.Scene {
         this.buttonSelector = this.add.image(0, 0, 'cursor-hand')
 
         this.titleScene.selectButton(0, this)
+        this.cameras.main.fadeIn(1000)
+        classCounter += 1
     }
     update(){
-        if(Phaser.Input.Keyboard.JustDown(keyUP) && this.buttonAppear == true){
-            this.titleScene.selectNextButton(-1, this)
-        }
-        else if (Phaser.Input.Keyboard.JustDown(keyDOWN)&& this.buttonAppear == true) {
-            this.titleScene.selectNextButton(1, this)
-        }
-        else if (Phaser.Input.Keyboard.JustDown(keySPACE)&& this.buttonAppear == true){
-            this.buttonAppear = false
-            this.moveButtons(this.OFFSCREEN_X)
-            this.confirmSelection()
-            this.loadScene.typeText(this) 
-            if(this.selectedButtonIndex == 0){
-                this.dialogLine += 2
-            }
-            else if(this.selectedButtonIndex == 1){
-                this.dialogLine += 1
-            }
+        //ESC to return to Title
+        if(Phaser.Input.Keyboard.JustDown(keyESC)){
+            this.scene.start("titleScene");
         }
 
         // check for spacebar press

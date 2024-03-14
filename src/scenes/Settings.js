@@ -7,7 +7,7 @@ class Settings extends Phaser.Scene {
         this.choice1Text = this.add.text(choice1.x, choice1.y, 'Class Event',textConfig).setOrigin(0.5)
 
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
-        this.choice1Text = this.add.text(choice1.x, choice2.y, 'Events Event',textConfig).setOrigin(0.5)
+        this.choice1Text = this.add.text(choice1.x, choice2.y, 'Date Event',textConfig).setOrigin(0.5)
 
         const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         this.choice1Text = this.add.text(choice1.x, choice3.y, 'Title Screen',textConfig).setOrigin(0.5)  

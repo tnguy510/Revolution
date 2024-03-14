@@ -50,6 +50,10 @@ class Intro extends Phaser.Scene {
         const choice1 = this.add.image(this.OFFSCREEN_X, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
+
+        const escButton = this.add.image(centerX + centerX /2, game.config.height - 64, 'glass-panel').setDisplaySize(200, 100)
+        this.add.text(escButton.x - 64, escButton.y - 16, 'ESC to return', textConfig)
+        this.add.text(escButton.x - 64, escButton.y , 'to TitleScreen', textConfig)
        
         // ready the character dialog images offscreen
         this.claire = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Claire').setOrigin(0, 1).setScale(.5)
@@ -113,12 +117,15 @@ class Intro extends Phaser.Scene {
         if(this.event == "claire"){
             if(this.selectedButtonIndex == 0){
                 this.dialogLine = 11
+                console.log("claire affection went up 3")
             }
             else if(this.selectedButtonIndex == 1){
                 this.dialogLine = 12
+                console.log("claire affection went down 1")
             }
             else if(this.selectedButtonIndex == 2){
                 this.dialogLine = 13
+                console.log("claire affection went up 0")
             }
         }
 
@@ -148,11 +155,20 @@ class Intro extends Phaser.Scene {
             //this.cameras.main.setBackgroundColor(0xffffff)
         //    this.cameras.main.fadeIn(1000)
         //}
+
+        //ESC to return to Title
+        if(Phaser.Input.Keyboard.JustDown(keyESC)){
+            console.log("escape")
+            this.scene.start("titleScene");
+        }
+
+
+        //Dialouge Mapping here
         if(this.dialogLine == 2 && this.dialogTyping == false){
             playerName = prompt("Enter your name", "...")
             this.loadScene.typeText(this) 
         }
-        if(this.dialogLine == 1 && this.dialogTyping == false){
+        if(this.dialogLine == 10 && this.dialogTyping == false){
             //line 10
             this.moveButtons(centerX)
             this.event = "claire"
@@ -164,6 +180,7 @@ class Intro extends Phaser.Scene {
 
         }
 
+        //Options Logic
         if(Phaser.Input.Keyboard.JustDown(keyUP) && this.buttonAppear == true){
             this.titleScene.selectNextButton(-1, this)
         }
@@ -172,7 +189,7 @@ class Intro extends Phaser.Scene {
         }
         else if (Phaser.Input.Keyboard.JustDown(keySPACE)&& this.buttonAppear == true){
             this.buttonAppear = false
-            this.moveButtons(this.OFFSCREEN_X)
+            this.loadScene.moveButtons(this.OFFSCREEN_X, this)
             this.confirmSelection()
             this.loadScene.typeText(this) 
             if(this.selectedButtonIndex == 0){
