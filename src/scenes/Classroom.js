@@ -102,7 +102,10 @@ class Classroom extends Phaser.Scene {
         // check for spacebar press
         if(Phaser.Input.Keyboard.JustDown(cursors.space) && !this.dialogTyping) {
             this.loadScene.typeText(this) // trigger dialog
+            //Ends the Classroom section after reading 3 lines.
             if(this.dialogLine % 4 == 0 ){
+                console.log('Class Counter:')
+                console.log(classCounter)
                 this.scene.start('eventScene')
             }
         }

@@ -84,7 +84,7 @@ class Intro extends Phaser.Scene {
         
         //selection buttons items
         this.buttonAppear = false
-        this.selectedButtonIndex = 0
+        this.selectedButtonIndex = 0 
 
         this.buttons = [choice1, choice2, choice3]
 

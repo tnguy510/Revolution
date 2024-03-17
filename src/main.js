@@ -47,4 +47,4 @@ let textConfig = {
 
 var keyUP, keyDOWN, keySPACE, keyESC
 let playerName
-var classCounter, thaneAffection
+var classCounter, thaneAffection, dayCounter

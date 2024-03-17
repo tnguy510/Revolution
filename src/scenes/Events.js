@@ -43,14 +43,17 @@ class Events extends Phaser.Scene {
        
         // parse dialog from JSON file
         this.thaneEvent = this.cache.json.get('thaneDialog')
+        this.thaneAffection = false
         //3 choices should be
         //Wait for him to finish before talking
         //Emerge and compliment him on his playing
         //Leave, this seems like a private moment
         this.rodEvent = this.cache.json.get('rodDialog')
 
-        this.dialogEvents = [this.thaneEvent, this.rodEvent]
-        var dialogRandom = this.dialogEvents[Phaser.Math.RND.integerInRange(0, 1)]
+        //this.dialogEvents = [this.thaneEvent, this.rodEvent]
+        //var dialogRandom = this.dialogEvents[Phaser.Math.RND.integerInRange(0, 1)]
+
+        var dialogRandom = this.rodEvent
 
         this.dialog = dialogRandom
 
@@ -103,29 +106,67 @@ class Events extends Phaser.Scene {
         this.textOption2 = this.add.text(centerX, this.buttons[1].y, 'Emerge and compliment him on his playing.',textConfig).setOrigin(0.5).setVisible(false)
         this.textOption3 = this.add.text(centerX, this.buttons[2].y, 'Leave, this seems like a private moment.',textConfig).setOrigin(0.5).setVisible(false)
 
+        //Text for Thane Liking You
+        this.textOption4 = this.add.text(centerX, this.buttons[0].y - 10, '"You play very well."',textConfig).setOrigin(0.5).setVisible(false)
+        this.textOption5 = this.add.text(centerX, this.buttons[1].y, '"I think you have room for improvement."',textConfig).setOrigin(0.5).setVisible(false)
+        this.textOption6 = this.add.text(centerX, this.buttons[2].y, '"I didn\'t like the music.',textConfig).setOrigin(0.5).setVisible(false)
+
         this.titleScene.selectButton(0, this)
         this.cameras.main.fadeIn(1000)
+
+        //Check what time of day it is
+        if(classCounter == 0){
+            console.log("morning event")
+        }
+        else if(classCounter == 1){
+            console.log("afternoon event")
+        }
+        else if(classCounter == 3){
+            console.log("evening event")
+        }
     }
 
     confirmSelection(){
-        if(this.selectedButtonIndex == 0){
-            this.dialogLine = 4
-        }
-        else if(this.selectedButtonIndex == 1){
-            this.dialogLine = 13
-        }
-        else if(this.selectedButtonIndex == 2){
-            if(classCounter >= 2){
-                this.scene.start('endDayScene')
+        if(this.thaneAffection == false){
+            if(this.selectedButtonIndex == 0){
+                //Option to give most affection
+                this.dialogLine = 4
             }
-            else{
-                this.scene.start('classScene')
+            else if(this.selectedButtonIndex == 1){
+                //Option that loses Affection
+                this.dialogLine = 13
             }
+            else if(this.selectedButtonIndex == 2){
+                //Option for player to walk away that raises no affection
+                if(classCounter > 2){
+                    this.scene.start('endDayScene')
+                }
+                else{
+                    this.scene.start('classScene')
+                }
+            }
+            this.textOption1.setVisible(false)
+            this.textOption2.setVisible(false)
+            this.textOption3.setVisible(false)
+        }
+        
+        //Thane Affection Choices
+        if(this.thaneAffection == true){
+            if(this.selectedButtonIndex == 0){
+                this.dialogLine = 10
+            }
+            else if(this.selectedButtonIndex == 1){
+                this.dialogLine = 11
+            }
+            else if(this.selectedButtonIndex == 2){
+                this.dialogLine = 9
+            }
+            
+            this.textOption4.setVisible(false)
+            this.textOption5.setVisible(false)
+            this.textOption6.setVisible(false)
         }
 
-        this.textOption1.setVisible(false)
-        this.textOption2.setVisible(false)
-        this.textOption3.setVisible(false)
     }
 
     update(){
@@ -145,7 +186,12 @@ class Events extends Phaser.Scene {
 
         //Thane likes you Choices
         if(this.dialogLine == 8 && !this.dialogTyping){
-
+            this.loadScene.moveButtons(centerX, this)
+            this.buttonAppear = true
+            this.textOption4.setVisible(true)
+            this.textOption5.setVisible(true)
+            this.textOption6.setVisible(true)
+            //9, 10, 11
         }
 
 
@@ -160,7 +206,13 @@ class Events extends Phaser.Scene {
             this.buttonAppear = false
             this.loadScene.moveButtons(this.OFFSCREEN_X, this)
             this.confirmSelection()
-            this.loadScene.typeText(this) 
+            this.loadScene.typeText(this)
+            if(this.selectedButtonIndex == 0){
+                this.dialogLine += 2
+            }
+            else if(this.selectedButtonIndex == 1){
+                this.dialogLine += 1
+            }
         }
 
         // check for spacebar press

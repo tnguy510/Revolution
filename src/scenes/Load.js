@@ -37,7 +37,8 @@ class Load extends Phaser.Scene {
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
         this.load.bitmapFont('mixSerif_font', 'font/MixSerif.png', 'font/MixSerif.xml')
 
-        classCounter = 2
+        classCounter = 0
+        dayCounter = 0
         thaneAffection = 0
 
     }
@@ -92,7 +93,7 @@ class Load extends Phaser.Scene {
         if(scene.dialogConvo >= scene.dialog.length) {
             // here I'm exiting the final conversation to return to the title...
             // ...but you could add alternate logic if needed
-            console.log('End of Conversations')
+            //console.log('End of Conversations')
             // tween out prior speaker's image
             if(scene.dialogLastSpeaker) {
                 scene.tweens.add({
@@ -101,12 +102,14 @@ class Load extends Phaser.Scene {
                     duration: scene.tweenDuration,
                     ease: 'Linear',
                     onComplete: () => {
-                        console.log(classCounter)
                         //why is this only incrementing after the Events Json
                         if(scene == scene.scene.get("introScene")){
                             scene.scene.start('classScene')
                         }
+                        //Only happens if the dialog json file runs out of lines. Other wise the update if in Classroom.js kicks in first
                         else if(scene == scene.scene.get("classScene")){
+                            console.log('Class Counter:')
+                            console.log(classCounter)
                             scene.scene.start('eventScene')
                         }
                         else if(scene == scene.scene.get("eventScene") && classCounter < 2){
