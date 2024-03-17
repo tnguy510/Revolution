@@ -38,16 +38,14 @@ class Intro extends Phaser.Scene {
 
         this.minerva = null
         this.tweenDuration = 500
-       
-        this.OFFSCREEN_X = -500        // x,y values to place characters offscreen
-        this.OFFSCREEN_Y = 1000
+
        
         // parse dialog from JSON file
         this.dialog = this.cache.json.get('introDialog')
 
         this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
 
-        const choice1 = this.add.image(this.OFFSCREEN_X, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
+        const choice1 = this.add.image(OFFSCREEN_X, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
 
@@ -56,13 +54,13 @@ class Intro extends Phaser.Scene {
         this.add.text(escButton.x - 64, escButton.y , 'to TitleScreen', textConfig)
        
         // ready the character dialog images offscreen
-        this.claire = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Claire').setOrigin(0, 1).setScale(.5)
-        this.misha = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Misha').setOrigin(0, 1).setScale(.5)
-        this.rod = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Rod').setOrigin(0, 1).setScale(.5)
-        this.thane = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Thane').setOrigin(0, 1).setScale(.5)
-        this.yu = this.add.sprite(this.OFFSCREEN_X, game.config.height, 'Yu').setOrigin(0, 1).setScale(.5)
+        this.claire = this.add.sprite(OFFSCREEN_X, game.config.height, 'Claire').setOrigin(0, 1).setScale(.5)
+        this.misha = this.add.sprite(OFFSCREEN_X, game.config.height, 'Misha').setOrigin(0, 1).setScale(.5)
+        this.rod = this.add.sprite(OFFSCREEN_X, game.config.height, 'Rod').setOrigin(0, 1).setScale(.5)
+        this.thane = this.add.sprite(OFFSCREEN_X, game.config.height, 'Thane').setOrigin(0, 1).setScale(.5)
+        this.yu = this.add.sprite(OFFSCREEN_X, game.config.height, 'Yu').setOrigin(0, 1).setScale(.5)
 
-        this.minerva = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'minerva').setOrigin(0, 1)
+        this.minerva = this.add.sprite(OFFSCREEN_X, this.DBOX_Y+8, 'minerva').setOrigin(0, 1)
               
         // add dialog box sprite
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0)
@@ -80,7 +78,6 @@ class Intro extends Phaser.Scene {
         this.loadScene.typeText(this)     
 
         this.titleScene = this.scene.get('titleScene')
-        this.event = null
         
         //selection buttons items
         this.buttonAppear = false
@@ -114,33 +111,17 @@ class Intro extends Phaser.Scene {
 
     confirmSelection(){
         //claire event
-        if(this.event == "claire"){
-            if(this.selectedButtonIndex == 0){
-                this.dialogLine = 11
-                console.log("claire affection went up 3")
-            }
-            else if(this.selectedButtonIndex == 1){
-                this.dialogLine = 12
-                console.log("claire affection went down 1")
-            }
-            else if(this.selectedButtonIndex == 2){
-                this.dialogLine = 13
-                console.log("claire affection went up 0")
-            }
+        if(this.selectedButtonIndex == 0){
+            this.dialogLine = 11
+            console.log("claire affection went up 3")
         }
-
-        //leftover from being able to ask teacher to repeat the introdouctions
-        //classroom introduction
-        if(this.event == "class"){
-            if(this.selectedButtonIndex == 0){
-                this.dialogLine = 18
-            }
-            else if(this.selectedButtonIndex == 1){
-                this.dialogLine = 21
-            }
-            else if(this.selectedButtonIndex == 2){
-                this.dialogLine = 22
-            }
+        else if(this.selectedButtonIndex == 1){
+            this.dialogLine = 12
+            console.log("claire affection went down 1")
+        }
+        else if(this.selectedButtonIndex == 2){
+            this.dialogLine = 13
+            console.log("claire affection went up 0")
         }
 
         this.textOption1.setVisible(false)
@@ -171,7 +152,6 @@ class Intro extends Phaser.Scene {
         if(this.dialogLine == 10 && this.dialogTyping == false){
             //line 10
             this.moveButtons(centerX)
-            this.event = "claire"
             this.buttonAppear = true
             this.textOption1.setVisible(true)
             this.textOption1P2.setVisible(true)
@@ -189,7 +169,7 @@ class Intro extends Phaser.Scene {
         }
         else if (Phaser.Input.Keyboard.JustDown(keySPACE)&& this.buttonAppear == true){
             this.buttonAppear = false
-            this.loadScene.moveButtons(this.OFFSCREEN_X, this)
+            this.loadScene.moveButtons(OFFSCREEN_X, this)
             this.confirmSelection()
             this.loadScene.typeText(this) 
             if(this.selectedButtonIndex == 0){

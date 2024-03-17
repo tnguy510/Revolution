@@ -58,9 +58,6 @@ class Load extends Phaser.Scene {
             currentButton.x = coords
             index++
         }
-        scene.textOption1.setVisible(true)
-        scene.textOption2.setVisible(true)
-        scene.textOption3.setVisible(true)
     }
 
     typeText(scene) {
@@ -102,7 +99,6 @@ class Load extends Phaser.Scene {
                     duration: scene.tweenDuration,
                     ease: 'Linear',
                     onComplete: () => {
-                        //why is this only incrementing after the Events Json
                         if(scene == scene.scene.get("introScene")){
                             scene.scene.start('classScene')
                         }
@@ -112,11 +108,9 @@ class Load extends Phaser.Scene {
                             console.log(classCounter)
                             scene.scene.start('eventScene')
                         }
-                        else if(scene == scene.scene.get("eventScene") && classCounter < 2){
+                        //
+                        else if(scene == scene.scene.get("eventScene")){
                             scene.scene.start('classScene')
-                        }
-                        else if(classCounter >= 2){
-                            scene.scene.start('endDayScene')
                         }
                         else{
                             scene.scene.start('titleScene')
@@ -136,7 +130,7 @@ class Load extends Phaser.Scene {
                 if(scene.dialogLastSpeaker) {
                     scene.tweens.add({
                         targets: scene[scene.dialogLastSpeaker],
-                        x: scene.OFFSCREEN_X,
+                        x: OFFSCREEN_X,
                         duration: scene.tweenDuration,
                         ease: 'Linear'
                     })

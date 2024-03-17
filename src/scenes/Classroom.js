@@ -106,7 +106,13 @@ class Classroom extends Phaser.Scene {
             if(this.dialogLine % 4 == 0 ){
                 console.log('Class Counter:')
                 console.log(classCounter)
-                this.scene.start('eventScene')
+                //Checking if 2 class periods just happened
+                if(classCounter >= 2){
+                    this.scene.start('endDayScene')
+                }
+                else{
+                    this.scene.start('eventScene')
+                }
             }
         }
     }

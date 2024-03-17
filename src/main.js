@@ -3,6 +3,15 @@
 //ask for player input
 //Errors:
 
+//To Do List: Add in Rod and Yu events. 
+//Last event before exams should be player attempting to ask one of the princes for study help.
+//Princes will help if their affection is high enough
+//Look into being able to remove a certain event from the event array
+    //Probably with turning the array into a global variable
+//Same thing with current position in the subject jsons
+//Exam section
+//Audio and sound elements
+
 
 "use strict"
 
@@ -21,6 +30,8 @@ const game = new Phaser.Game(config)
 // globals
 const centerX = game.config.width / 2
 const centerY = game.config.height / 2
+const OFFSCREEN_X = -500        // x,y values to place characters offscreen
+const OFFSCREEN_Y = 1000
 let cursors = null
 
 let menuConfig = {

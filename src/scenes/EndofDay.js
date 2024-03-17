@@ -16,7 +16,7 @@ class EndofDay extends Phaser.Scene {
         }
         else{
             //this.time.delayedCall(2000, () => {
-                this.scene.start("eventScene");
+                this.scene.start("classScene");
             //}, null, this)
         }
     }

@@ -2,8 +2,7 @@
     [
         {
             "speaker": "narrator",
-            "dialog": "While walking through the courtyard you soon catch the quiet melody of a harp.",
-            "newSpeaker": "true"
+            "dialog": "While walking through the courtyard you soon catch the quiet melody of a harp."
         },
         {
             "speaker": "narrator",
@@ -18,7 +17,7 @@
             "dialog": "You decide to wait and enjoy the music. Eventually Thane's melody comes to a close and he takes a pause."
         },
         {
-            "speaker": "Thane",
+            "speaker": "thane",
             "dialog": "Whoevers there, you can step out now.",
             "newSpeaker": "true"
         },
@@ -27,28 +26,34 @@
             "dialog": "Busted. You sheepishly step out of the bushes and walk over, ready to apologize for intruding."
         },
         {
-            "speaker": "Thane",
-            "dialog": "You've been listening, haven't you?"
+            "speaker": "thane",
+            "dialog": "You've been listening, haven't you?",
+            "newSpeaker": "true"
         },
         {
-            "speaker": "Thane",
+            "speaker": "thane",
             "dialog": "Tell me, did you enjoy the music?"
         },
         {
-            "speaker": "Thane",
+            "speaker": "thane",
             "dialog": "I'm glad to hear that. Maybe sometime we could play together or if you don't have any experience I could teach you."
         },
         {
-            "speaker": "Thane",
+            "speaker": "thane",
             "dialog": "I like that train of thought. We can always take the time to improve."
         },
         {
-            "speaker": "Thane",
+            "speaker": "thane",
             "dialog": "Hm. I suppose the harp isn't for everyone."
         },
         {
-            "speaker": "Thane",
+            "speaker": "thane",
             "dialog": "Well, look at the time. We better get going to class. I hope to see you again Mrs. Taylor."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "And with that Thane is off. You get the feeling that Thane really enjoyed your company.",
+            "newSpeaker": "true"
         },
 
         {
@@ -57,21 +62,16 @@
         },
         {
             "speaker": "narrator",
-            "dialog": " He stops playing and looks up with a face of annoyancee before starting to pack up his harp."
+            "dialog": "He stops playing and looks up with a face of annoyancee before starting to pack up his harp."
         },
         {
-            "speaker": "Prince Thane",
+            "speaker": "thane",
             "dialog": "Thank you. Now if you'll excuse me.",
             "newSpeaker": "true"
         },
         {
             "speaker": "narrator",
             "dialog": "Before you can say another word Prince Thane is off. You get the feeling that interrupting him put a damper on his mood.",
-            "newSpeaker": "true"
-        },
-        {
-            "speaker": "narrator",
-            "dialog": "And with that Thane is off. You get the feeling that Thane really enjoyed your company.",
             "newSpeaker": "true"
         }
 
