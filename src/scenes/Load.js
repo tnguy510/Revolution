@@ -24,13 +24,18 @@ class Load extends Phaser.Scene {
 
         // load JSON (ie dialog text)
         this.load.json('introDialog', 'json/intro.json')
+        this.load.json('endofDayDialog', 'json/endofDay.json')
 
         //classroom topics JSONS
         this.load.json('etiquetteDialog', 'json/etiquette.json')
 
         //event dialogs
         this.load.json('thaneDialog', 'json/thaneEvent.json')
+        this.load.json('thaneDialog2', 'json/thaneEvent2.json')
         this.load.json('rodDialog', 'json/rodEvent.json')
+        //this.load.json('rodDialog2', 'json/rodEvent.json')
+        this.load.json('yuDialog', 'json/yuEvent.json')
+        //this.load.json('yuDialog2', 'json/yuEvent.json')
 
 
         // load bitmap font
@@ -38,8 +43,10 @@ class Load extends Phaser.Scene {
         this.load.bitmapFont('mixSerif_font', 'font/MixSerif.png', 'font/MixSerif.xml')
 
         classCounter = 0
-        dayCounter = 0
-        thaneAffection = 0
+        dayCounter = 1
+        thaneAffectionLevel = 0
+        rodAffectionLevel = 0
+        yuAffectionLevel = 0
 
     }
 
@@ -90,16 +97,31 @@ class Load extends Phaser.Scene {
         if(scene.dialogConvo >= scene.dialog.length) {
             // here I'm exiting the final conversation to return to the title...
             // ...but you could add alternate logic if needed
-            //console.log('End of Conversations')
+            console.log('End of Conversations')
             // tween out prior speaker's image
             if(scene.dialogLastSpeaker) {
                 scene.tweens.add({
                     targets: scene[scene.dialogLastSpeaker],
-                    x: scene.OFFSCREEN_X,
-                    duration: scene.tweenDuration,
+                    x: OFFSCREEN_X,
+                    duration: tweenDuration,
                     ease: 'Linear',
                     onComplete: () => {
                         if(scene == scene.scene.get("introScene")){
+                            scene.scene.start('classScene')
+                        }
+                        //plays for the normal days
+                        else if(scene == scene.scene.get("endDayScene")){
+                            if(dayCounter >= 7){
+                                console.log('week over')
+                                scene.scene.start('titleScene')
+                            }
+                            else{
+                                //this.time.delayedCall(2000, () => {
+                                    scene.scene.start("classScene");
+                                //}, null, this)
+                            }
+                        }
+                        else if(scene == scene.scene.get("eventScene")){
                             scene.scene.start('classScene')
                         }
                         //Only happens if the dialog json file runs out of lines. Other wise the update if in Classroom.js kicks in first
@@ -109,9 +131,6 @@ class Load extends Phaser.Scene {
                             scene.scene.start('eventScene')
                         }
                         //
-                        else if(scene == scene.scene.get("eventScene")){
-                            scene.scene.start('classScene')
-                        }
                         else{
                             scene.scene.start('titleScene')
                         }
@@ -131,15 +150,15 @@ class Load extends Phaser.Scene {
                     scene.tweens.add({
                         targets: scene[scene.dialogLastSpeaker],
                         x: OFFSCREEN_X,
-                        duration: scene.tweenDuration,
+                        duration: tweenDuration,
                         ease: 'Linear'
                     })
                 }
                 // tween in new speaker's image
                 scene.tweens.add({
                     targets: scene[scene.dialogSpeaker],
-                    x: scene.DBOX_X + 50,
-                    duration: scene.tweenDuration,
+                    x: 1 / game.config.width,
+                    duration: tweenDuration,
                     ease: 'Linear'
                 })
             }
@@ -153,7 +172,7 @@ class Load extends Phaser.Scene {
             // create a timer to iterate through each letter in the dialog text
             let currentChar = 0
             scene.textTimer = scene.time.addEvent({
-                delay: scene.LETTER_TIMER,
+                delay: LETTER_TIMER,
                 repeat: scene.dialogLines.length - 1,
                 callback: () => { 
                     // concatenate next letter from dialogLines
@@ -164,7 +183,7 @@ class Load extends Phaser.Scene {
                     // (necessary since Phaser 3 no longer seems to have an onComplete event)
                     if(scene.textTimer.getRepeatCount() == 0) {
                         // show prompt for more text
-                        scene.nextText = scene.add.bitmapText(scene.NEXT_X, scene.NEXT_Y, scene.DBOX_FONT, scene.NEXT_TEXT, scene.TEXT_SIZE).setOrigin(1)
+                        scene.nextText = scene.add.bitmapText(NEXT_X, NEXT_Y, DBOX_FONT, NEXT_TEXT, TEXT_SIZE).setOrigin(1)
                         scene.dialogTyping = false   // un-lock input
                         scene.textTimer.destroy()    // destroy timer
                     }
@@ -172,7 +191,7 @@ class Load extends Phaser.Scene {
                 callbackScope: scene // keep Scene context
             })
             
-            scene.dialogText.maxWidth = scene.TEXT_MAX_WIDTH  // set bounds on dialog
+            scene.dialogText.maxWidth = TEXT_MAX_WIDTH  // set bounds on dialog
             scene.dialogLine++                               // increment dialog line
             scene.dialogLastSpeaker = scene.dialogSpeaker     // set past speaker
         }

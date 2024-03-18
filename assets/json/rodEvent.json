@@ -2,7 +2,34 @@
     [        
         {
             "speaker": "narrator",
-            "dialog": "rodEvent"
+            "dialog": "You're in the cafeteria for lunch when as you're preparing to sit down Claire suddenly sits down at the table."
+        },
+        {
+            "speaker": "claire",
+            "dialog": "Oh my! I didn't see the crumb that was you. Seems like I got to this seat first so run along dear commoner.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Looking around you spot Prince Rod motioning you to go sit with him however you also see Misha outside. What do you do?",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "You decide to sit with neither and instead find a lone seat in the corner to finish lunch at."
+        },
+        {
+            "speaker": "rod",
+            "dialog": "Hey glad you could make it! How are you classes going so far?",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "misha",
+            "dialog": "Oh hi! How are you classes going so far?"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Eventually lunch wraps up and conversations die down before you head to your next class."
         }
     ]
 ]

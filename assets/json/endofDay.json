@@ -10,7 +10,11 @@
         },
         {
             "speaker": "narrator",
-            "dialog": "After reviewing what you have learned today you turn in, ready for another day of study."
+            "dialog": "There are these many days left until the exam at the end of the week."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "After reviewing what you have learned today you turn in for the day, ready for another day of study."
         }
     ]
 ]

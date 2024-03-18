@@ -1,0 +1,42 @@
+[
+    [
+        {
+            "speaker": "narrator",
+            "dialog": "You're studying the library when the seat next to you is pulled out and someone sits down."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Looking to your side you are surprised at the sight of Prince Yu who is now looking at your book."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "Wow you're making this assignment look easy, I'm having a tough time with it. Do you think you'd lend me your answers?",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "yu",
+            "dialog": "I owe you one Taylor. I'll just copy them real quick."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "I wouldn't mind that! Let's get started then."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "A woman who has her priorities right. I can respect that!"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Eventually the bell tolls signalling the end of break. Yu stands up and stretches."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "This was fun. I'll see you around Taylor"
+        },
+        {   
+            "speaker": "narrator",
+            "dialog": "And with your que to leave you both head back to class.",
+            "newSpeaker": "true"
+        }
+    ]
+]

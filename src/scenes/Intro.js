@@ -4,22 +4,6 @@ class Intro extends Phaser.Scene {
     }
 
     create(){
-        // dialog constants
-        this.DBOX_X = 0      // dialog box x-position
-        this.DBOX_Y = game.config.height * 2 / 3			    // dialog box y-position
-        this.DBOX_FONT = 'gem_font'	    // dialog box font key
-        
-        this.TEXT_X = 50			    // text w/in dialog box x-position
-        this.TEXT_Y = this.DBOX_Y + 45			    // text w/in dialog box y-position
-        this.TEXT_SIZE = 32		        // text font size (in pixels)
-        this.TEXT_MAX_WIDTH = 715	    // max width of text within box
-       
-        this.NEXT_TEXT = '[SPACE]'	    // text to display for next prompt
-        this.NEXT_X = 775			    // next text prompt x-position
-        this.NEXT_Y = this.TEXT_Y + 180			    // next text prompt y-position
-
-        this.LETTER_TIMER = 10		    // # ms each letter takes to "type" onscreen
-       
         // dialog variables
         this.dialogConvo = 0			// current "conversation"
         this.dialogLine = 0			    // current line of conversation
@@ -37,8 +21,6 @@ class Intro extends Phaser.Scene {
         this.yu = null
 
         this.minerva = null
-        this.tweenDuration = 500
-
        
         // parse dialog from JSON file
         this.dialog = this.cache.json.get('introDialog')
@@ -49,7 +31,7 @@ class Intro extends Phaser.Scene {
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
 
-        const escButton = this.add.image(centerX + centerX /2, game.config.height - 64, 'glass-panel').setDisplaySize(200, 100)
+        const escButton = this.add.image(game.config.width - 128, game.config.height - 64, 'glass-panel').setDisplaySize(200, 100)
         this.add.text(escButton.x - 64, escButton.y - 16, 'ESC to return', textConfig)
         this.add.text(escButton.x - 64, escButton.y , 'to TitleScreen', textConfig)
        
@@ -60,15 +42,15 @@ class Intro extends Phaser.Scene {
         this.thane = this.add.sprite(OFFSCREEN_X, game.config.height, 'Thane').setOrigin(0, 1).setScale(.5)
         this.yu = this.add.sprite(OFFSCREEN_X, game.config.height, 'Yu').setOrigin(0, 1).setScale(.5)
 
-        this.minerva = this.add.sprite(OFFSCREEN_X, this.DBOX_Y+8, 'minerva').setOrigin(0, 1)
+        this.minerva = this.add.sprite(OFFSCREEN_X, DBOX_Y+8, 'minerva').setOrigin(0, 1)
               
         // add dialog box sprite
-        this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0)
-        this.dialogbox.scaleY = 2
+        this.dialogbox = this.add.sprite(DBOX_X, DBOX_Y, 'dialogbox').setOrigin(0)
+        this.dialogbox.scaleY = 1.5
        
         // initialize dialog text objects (with no text)
-        this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
-        this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
+        this.dialogText = this.add.bitmapText(TEXT_X, TEXT_Y, DBOX_FONT, '', TEXT_SIZE)
+        this.nextText = this.add.bitmapText(NEXT_X, NEXT_Y, DBOX_FONT, '', TEXT_SIZE)
        
         // input
         cursors = this.input.keyboard.createCursorKeys()
@@ -110,7 +92,7 @@ class Intro extends Phaser.Scene {
     }
 
     confirmSelection(){
-        //claire event
+        //at some point the dialogLine desynced from the lines in the json file
         if(this.selectedButtonIndex == 0){
             this.dialogLine = 11
             console.log("claire affection went up 3")
@@ -149,8 +131,9 @@ class Intro extends Phaser.Scene {
             playerName = prompt("Enter your name", "...")
             this.loadScene.typeText(this) 
         }
-        if(this.dialogLine == 10 && this.dialogTyping == false){
+        if(this.dialogLine == 11 && this.dialogTyping == false){
             //line 10
+            //at some point the dialogLine desynced from the lines in the json file
             this.moveButtons(centerX)
             this.buttonAppear = true
             this.textOption1.setVisible(true)
@@ -167,7 +150,7 @@ class Intro extends Phaser.Scene {
         else if (Phaser.Input.Keyboard.JustDown(keyDOWN)&& this.buttonAppear == true) {
             this.titleScene.selectNextButton(1, this)
         }
-        else if (Phaser.Input.Keyboard.JustDown(keySPACE)&& this.buttonAppear == true){
+        else if (Phaser.Input.Keyboard.JustDown(keySPACE) && this.buttonAppear == true){
             this.buttonAppear = false
             this.loadScene.moveButtons(OFFSCREEN_X, this)
             this.confirmSelection()

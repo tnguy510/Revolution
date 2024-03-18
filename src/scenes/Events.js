@@ -3,22 +3,6 @@ class Events extends Phaser.Scene {
         super('eventScene')
     }
     create(){
-        // dialog constants
-        this.DBOX_X = 0      // dialog box x-position
-        this.DBOX_Y = game.config.height * 2 / 3			    // dialog box y-position
-        this.DBOX_FONT = 'gem_font'	    // dialog box font key
-        
-        this.TEXT_X = 50			    // text w/in dialog box x-position
-        this.TEXT_Y = this.DBOX_Y + 45			    // text w/in dialog box y-position
-        this.TEXT_SIZE = 32		        // text font size (in pixels)
-        this.TEXT_MAX_WIDTH = 715	    // max width of text within box
-       
-        this.NEXT_TEXT = '[SPACE]'	    // text to display for next prompt
-        this.NEXT_X = 775			    // next text prompt x-position
-        this.NEXT_Y = this.TEXT_Y + 180			    // next text prompt y-position
-
-        this.LETTER_TIMER = 10		    // # ms each letter takes to "type" onscreen
-       
         // dialog variables
         this.dialogConvo = 0			// current "conversation"
         this.dialogLine = 0			    // current line of conversation
@@ -34,31 +18,40 @@ class Events extends Phaser.Scene {
         this.rod = null
         this.thane = null
         this.yu = null
-
-        this.minerva = null
-        this.tweenDuration = 500
-       
-        this.OFFSCREEN_X = -500        // x,y values to place characters offscreen
-        this.OFFSCREEN_Y = 1000
        
         // parse dialog from JSON file
         this.thaneEvent = this.cache.json.get('thaneDialog')
-        this.thaneAffection = false
+        this.rodEvent = this.cache.json.get('rodDialog')
+        this.yuEvent = this.cache.json.get('yuDialog')
         //FORMAT OF JSON FILE SHOULD BE:
         //Read 3 lines, then present choice
-        //Lines 4-8, Dialogue for Index 0 then present 2nd choice(if wanted)
-        //Lines 9, 10, 11 are for the 2nd choice index respectively(1 line each)
-        //Line 12 & 13 is for goodbye dialoge
-        //Line 14-17(or EOF) is for Choice Index 1
-        //No dialogue for Choice Index 2 where player decides to leave
+        //Next 3 lines are for the different choices
+        //7th line is a goodbye/transitional line
+        //Any additional lines should be for the sake of moving the scene along
 
-        this.rodEvent = this.cache.json.get('rodDialog')
 
-        //this.dialogEvents = [this.thaneEvent, this.rodEvent]
-        //var dialogRandom = this.dialogEvents[Phaser.Math.RND.integerInRange(0, 1)]
-        var dialogRandom = this.thaneEvent
+        if(dayCounter == 1){
+            this.dialog = this.thaneEvent
+            this.event = 'thane'
+        }
+        else if(dayCounter == 2){
+            this.dialog = this.rodEvent
+            this.event = 'rod'
+        }
+        else if(dayCounter == 3){
+            this.dialog = this.yuEvent
+            this.event = 'yu'
+        }
+        else{
+            this.dialog = this.thaneEvent
+        }
 
-        this.dialog = dialogRandom
+        //Segment of if Events are randomized. Discarded for time
+        //this.dialogEvents = [this.thaneEvent, this.rodEvent, this.yuEvent]
+        //var dialogRandom = this.dialogEvents[Phaser.Math.RND.integerInRange(0, 2)]
+        //var dialogRandom = this.rodEvent
+        //this.event = dialogRandom
+        //this.dialog = dialogRandom
 
         this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
 
@@ -66,7 +59,7 @@ class Events extends Phaser.Scene {
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice3 = this.add.image(choice2.x, choice2.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
 
-        const escButton = this.add.image(centerX + centerX /2, game.config.height - 64, 'glass-panel').setDisplaySize(200, 100)
+        const escButton = this.add.image(game.config.width - 128, game.config.height - 64, 'glass-panel').setDisplaySize(200, 100)
         this.add.text(escButton.x - 64, escButton.y - 16, 'ESC to return', textConfig)
         this.add.text(escButton.x - 64, escButton.y , 'to TitleScreen', textConfig)
        
@@ -78,12 +71,12 @@ class Events extends Phaser.Scene {
         this.yu = this.add.sprite(OFFSCREEN_X, game.config.height, 'Yu').setOrigin(0, 1).setScale(.5)
               
         // add dialog box sprite
-        this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0)
+        this.dialogbox = this.add.sprite(DBOX_X, DBOX_Y, 'dialogbox').setOrigin(0)
         this.dialogbox.scaleY = 2
        
         // initialize dialog text objects (with no text)
-        this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
-        this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
+        this.dialogText = this.add.bitmapText(TEXT_X, TEXT_Y, DBOX_FONT, '', TEXT_SIZE)
+        this.nextText = this.add.bitmapText(NEXT_X, NEXT_Y, DBOX_FONT, '', TEXT_SIZE)
        
         // input
         cursors = this.input.keyboard.createCursorKeys()
@@ -93,7 +86,6 @@ class Events extends Phaser.Scene {
         this.loadScene.typeText(this)     
 
         this.titleScene = this.scene.get('titleScene')
-        this.event = null
         
         //selection buttons items
         this.buttonAppear = false
@@ -103,64 +95,64 @@ class Events extends Phaser.Scene {
 
         this.buttonSelector = this.add.image(0, 0, 'cursor-hand')
 
-        this.textOption1 = this.add.text(centerX, this.buttons[0].y, 'Wait for him to finish before talking.',textConfig).setOrigin(0.5).setVisible(false)
-        this.textOption2 = this.add.text(centerX, this.buttons[1].y, 'Emerge and compliment him on his playing.',textConfig).setOrigin(0.5).setVisible(false)
-        this.textOption3 = this.add.text(centerX, this.buttons[2].y, 'Leave, this seems like a private moment.',textConfig).setOrigin(0.5).setVisible(false)
+        //thane Dialouge Options
+                                                                        //Option that loses Affection
+        this.thaneOption1 = this.add.text(centerX, this.buttons[0].y, 'Oh I\'m so sorry! I would have never noticed!',textConfig).setOrigin(0.5).setVisible(false)
+                                                                        //Option that gains Affection
+        this.thaneOption2 = this.add.text(centerX, this.buttons[1].y, 'Thank you! I wouldn\'t have noticed until later.',textConfig).setOrigin(0.5).setVisible(false)
+                                                                        //Option that gives no Affection
+        this.thaneOption3 = this.add.text(centerX, this.buttons[2].y, 'That\'s not my book.',textConfig).setOrigin(0.5).setVisible(false)
 
-        //Text for Thane Liking You
-        this.textOption4 = this.add.text(centerX, this.buttons[0].y, '"You play very well."',textConfig).setOrigin(0.5).setVisible(false)
-        this.textOption5 = this.add.text(centerX, this.buttons[1].y, '"I think you have room for improvement."',textConfig).setOrigin(0.5).setVisible(false)
-        this.textOption6 = this.add.text(centerX, this.buttons[2].y, '"I didn\'t like the music."',textConfig).setOrigin(0.5).setVisible(false)
+        //Rod Dialouge Options
+        this.rodOption1 = this.add.text(centerX, this.buttons[0].y, 'Go sit alone.',textConfig).setOrigin(0.5).setVisible(false)
+        //Option that gains Affection
+        this.rodOption2 = this.add.text(centerX, this.buttons[1].y, 'Go sit with Prince Rod.',textConfig).setOrigin(0.5).setVisible(false)
+        //Option that gives no Affection
+        this.rodOption3 = this.add.text(centerX, this.buttons[2].y, 'Go sit with Prince Misha.',textConfig).setOrigin(0.5).setVisible(false)
+
+        //Yu Dialouge Options
+        this.yuOption1 = this.add.text(centerX, this.buttons[0].y, 'Of course! Here you go!',textConfig).setOrigin(0.5).setVisible(false)
+        //Option that gains Affection
+        this.yuOption2 = this.add.text(centerX, this.buttons[1].y, 'Hmm, how about we go through the assignment together and I\'ll help you put.',textConfig).setOrigin(0.5).setVisible(false)
+        //Option that gives no Affection
+        this.yuOption3 = this.add.text(centerX, this.buttons[2].y, 'You should do the assignment yourself.',textConfig).setOrigin(0.5).setVisible(false)
 
         this.titleScene.selectButton(0, this)
         this.cameras.main.fadeIn(1000)
     }
 
     confirmSelection(){
-        //Thane Event Choices
-        console.log(this.thaneAffection)
-        if(this.thaneAffection == false){
-            if(this.selectedButtonIndex == 0){
-                //Option to give most affection
-                this.dialogLine = 3
-            }
-            else if(this.selectedButtonIndex == 1){
-                //Option that loses Affection
-                this.dialogLine = 14
-            }
-            else if(this.selectedButtonIndex == 2){
-                //Option for player to walk away that raises no affection
-                if(classCounter > 2){
-                    this.scene.start('endDayScene')
-                }
-                else{
-                    this.scene.start('classScene')
-                }
-            }
-            this.textOption1.setVisible(false)
-            this.textOption2.setVisible(false)
-            this.textOption3.setVisible(false)
-            return
+        if(this.selectedButtonIndex == 0){
+            //Option that loses Affection
+            thaneAffectionLevel -= 1
+            this.dialogLine = 3
         }
-        
-        //Thane Affection Choices
-        if(this.thaneAffection == true){
-            if(this.selectedButtonIndex == 0){
-                //"You play very well."
-                this.dialogLine = 8
-            }
-            else if(this.selectedButtonIndex == 1){
-                //"I think you have room for improvement."
-                this.dialogLine = 9
-            }
-            else if(this.selectedButtonIndex == 2){
-                //"I didn't like the music."
-                this.dialogLine = 10
-            }
-            
-            this.textOption4.setVisible(false)
-            this.textOption5.setVisible(false)
-            this.textOption6.setVisible(false)
+        else if(this.selectedButtonIndex == 1){
+            //Option to give most affection
+            thaneAffectionLevel += 3
+            this.dialogLine = 4
+        }
+        else if(this.selectedButtonIndex == 2){
+            //Option that gives little Affection
+            thaneAffectionLevel += 1
+            this.dialogLine = 5
+        }
+
+        //Setting Visibility for what event it is
+        if(this.event == 'thane'){
+            this.thaneOption1.setVisible(false)
+            this.thaneOption2.setVisible(false)
+            this.thaneOption3.setVisible(false)
+        }
+        else if(this.event == 'rod'){
+            this.rodOption1.setVisible(false)
+            this.rodOption2.setVisible(false)
+            this.rodOption3.setVisible(false)
+        }
+        else if(this.event == 'yu'){
+            this.yuOption1.setVisible(false)
+            this.yuOption2.setVisible(false)
+            this.yuOption3.setVisible(false)
         }
 
     }
@@ -171,23 +163,25 @@ class Events extends Phaser.Scene {
             this.scene.start("titleScene");
         }
 
-        //Initial Choices
-        if(this.dialogLine == 3 && !this.dialogTyping){
+        if(this.dialogLine == 1 && !this.dialogTyping){
             this.loadScene.moveButtons(centerX, this)
             this.buttonAppear = true
-            this.textOption1.setVisible(true)
-            this.textOption2.setVisible(true)
-            this.textOption3.setVisible(true)
-        }
 
-        //Thane likes you Choices
-        if(this.dialogLine == 8 && !this.dialogTyping){
-            this.loadScene.moveButtons(centerX, this)
-            this.buttonAppear = true
-            this.textOption4.setVisible(true)
-            this.textOption5.setVisible(true)
-            this.textOption6.setVisible(true)
-            //9, 10, 11
+            if(this.event == 'thane'){
+                this.thaneOption1.setVisible(true)
+                this.thaneOption2.setVisible(true)
+                this.thaneOption3.setVisible(true)
+            }
+            else if(this.event == 'rod'){
+                this.rodOption1.setVisible(true)
+                this.rodOption2.setVisible(true)
+                this.rodOption3.setVisible(true)
+            }
+            else if(this.event == 'yu'){
+                this.yuOption1.setVisible(true)
+                this.yuOption2.setVisible(true)
+                this.yuOption3.setVisible(true)
+            }
         }
 
 
@@ -195,37 +189,25 @@ class Events extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyUP) && this.buttonAppear == true){
             this.titleScene.selectNextButton(-1, this)
         }
-        else if (Phaser.Input.Keyboard.JustDown(keyDOWN)&& this.buttonAppear == true) {
+        else if (Phaser.Input.Keyboard.JustDown(keyDOWN) && this.buttonAppear == true) {
             this.titleScene.selectNextButton(1, this)
         }
-        else if (Phaser.Input.Keyboard.JustDown(keySPACE)&& this.buttonAppear == true){
+        else if (Phaser.Input.Keyboard.JustDown(keySPACE) && this.buttonAppear == true){
             this.buttonAppear = false
             this.loadScene.moveButtons(OFFSCREEN_X, this)
             this.confirmSelection()
             this.loadScene.typeText(this)
-            if(this.thaneAffection == true){
-                if(this.selectedButtonIndex == 0){
-                    this.dialogLine += 2
-                }
-                else if(this.selectedButtonIndex == 1){
-                    this.dialogLine += 1
-                }
-            }
-
             if(this.selectedButtonIndex == 0){
-                this.thaneAffection = true
+                this.dialogLine += 2
+            }
+            else if(this.selectedButtonIndex == 1){
+                this.dialogLine += 1
             }
         }
 
         // check for spacebar press
         if(Phaser.Input.Keyboard.JustDown(cursors.space) && !this.dialogTyping) {
-            //Check if end of branch
-            if(this.dialogLine == 13){
-                this.scene.start('classScene')
-            }
-            else{
-                this.loadScene.typeText(this) // trigger dialog
-            }
+            this.loadScene.typeText(this) // trigger dialog
         }
     }
 }
