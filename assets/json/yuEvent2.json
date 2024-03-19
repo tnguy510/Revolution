@@ -1,0 +1,73 @@
+[
+    [
+        {
+            "speaker": "narrator",
+            "dialog": "You're walking around the flower patches of campus when you see a commontion at one of the tables."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "In the center is Prince Yu who is surrounded by girls, all suggesting poetic lines, presumeably for whatever Prince Yu is writing"
+        },
+        {
+            "speaker": "yu",
+            "dialog": "Hello Taylor! Say do you happen to have any suggestions for this poem I'm writing? I'm having trouble adding conflict to this love story.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "yu",
+            "dialog": "Spicy I like it! Yeah I'll go with that one, mind helping me with this next part?"
+        },
+        {
+            "speaker": "yu",
+            "dialog": "After the main character denies the love interest they start working towards building their relationship."        
+        },
+        {
+            "speaker": "yu",
+            "dialog": "But then tragedy strikes and they're separated for things out of their control."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "I'm getting to the end of the story but I'd like it to be open ended."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "How do you think this should be resolved?"
+        },
+        {
+            "speaker": "yu",
+            "dialog": "Accepting the circumstances? I suppose they could learn to move on."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "Meeting each other within the system? I suppose they could learn to love within it."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "A plan to see each other again? I like that, it adds depth to their characters."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "Thank you for all your help Taylor. Let's talk some more another time."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "And with that Yu is off. You get the feeling that Yu really enjoyed your company.",
+            "newSpeaker": "true"
+        },
+
+        {
+            "speaker": "narrator",
+            "dialog": "You see Prince Yu's smile twitch before looking back at the paper."
+        },
+        {
+            "speaker": "yu",
+            "dialog": "Hmm. Not really what I'm going for, thank you for the suggestion though."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Before the conversation can continue the bell signals the start of class and Prince Yu hurrys off. You get the feeling that wasn't the answer he was looking for.",
+            "newSpeaker": "true"
+        }
+
+    ]
+]

@@ -1,0 +1,73 @@
+[
+    [
+        {
+            "speaker": "narrator",
+            "dialog": "Walking past a practice field you are barely able to dodge as a football rushes past you."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Regaining your barings you pick up the ball and are able to throw it back when Prince Rod runs up to you."
+        },
+        {
+            "speaker": "rod",
+            "dialog": "Ah sorry about that! Say you dodged pretty well, want to do a few games with us?",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "rod",
+            "dialog": "Really? That's great! Come on I'll introduce you to the rest of the team!"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "After some quick introductions you are put on the team with Prince Rod."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "During one game you get the ball and have the choice of picking between Prince Rod and another classmate."
+        },
+        {
+            "speaker": "rod",
+            "dialog": "Oi Taylor over here!"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Prince Rod doesn't seem to see he'll be blocked easily while the other classmate will be able to score. Who do you want to shoot it towards?"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "Shooting the ball towards Prince Rod he is immediately intercepted by the other team who scores a goal. Rod looks disappointed that he didn't notice them."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "You start running with the ball towards the goal yourself. Unfortunately you're intercepted by the other team who gains control of the ball."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "You shoot it towards your other classmate and they score the goal. Rod looks impressed with your perception skills."
+        },
+        {
+            "speaker": "rod",
+            "dialog": "Alright teams! Let's wrap up for now! Thanks for playing along Taylor, I'll see you around!"
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "And with that Rod is off. You get the feeling that Rod really enjoyed your company.",
+            "newSpeaker": "true"
+        },
+
+        {
+            "speaker": "narrator",
+            "dialog": "Prince Rod gets this look of disappointment before turning back to the group."
+        },
+        {
+            "speaker": "rod",
+            "dialog": "Well, alright. Just remember I'm just a student like you when I'm here and you're free to join in any activities I'm in."
+        },
+        {
+            "speaker": "narrator",
+            "dialog": "And with that Prince Rod is off. You get the feeling that wasn't the answer he was looking for.",
+            "newSpeaker": "true"
+        }
+
+    ]
+]

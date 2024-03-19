@@ -68,7 +68,6 @@ class Title extends Phaser.Scene {
             index = 0
         }
 
-        //console.log(this.selectedButtonIndex)    
         this.selectButton(index, scene)
     }
 

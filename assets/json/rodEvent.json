@@ -29,7 +29,8 @@
         },
         {
             "speaker": "narrator",
-            "dialog": "Eventually lunch wraps up and conversations die down before you head to your next class."
+            "dialog": "Eventually lunch wraps up and conversations die down before you head to your next class.",
+            "newSpeaker": "true"
         }
     ]
 ]

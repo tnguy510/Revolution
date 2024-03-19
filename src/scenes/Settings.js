@@ -34,7 +34,12 @@ class Settings extends Phaser.Scene {
         }
         else if(this.selectedButtonIndex == 1){
             classCounter += 1
-            this.scene.start("eventScene");
+            if(dayCounter <= 3){
+                this.scene.start("eventScene");
+            }
+            else if(dayCounter >= 4){
+                this.scene.start("event2Scene");
+            }
         }
         else if(this.selectedButtonIndex == 2){
             this.scene.start("endDayScene");

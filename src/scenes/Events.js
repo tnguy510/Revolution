@@ -23,24 +23,28 @@ class Events extends Phaser.Scene {
         this.thaneEvent = this.cache.json.get('thaneDialog')
         this.rodEvent = this.cache.json.get('rodDialog')
         this.yuEvent = this.cache.json.get('yuDialog')
+        this.eventAffectionLevel = 0
         //FORMAT OF JSON FILE SHOULD BE:
         //Read 3 lines, then present choice
         //Next 3 lines are for the different choices
         //7th line is a goodbye/transitional line
         //Any additional lines should be for the sake of moving the scene along
 
-
+        //Deciding what day it is for each prince
         if(dayCounter == 1){
             this.dialog = this.thaneEvent
             this.event = 'thane'
+            this.eventAffectionLevel = thaneAffectionLevel
         }
         else if(dayCounter == 2){
             this.dialog = this.rodEvent
             this.event = 'rod'
+            this.eventAffectionLevel = rodAffectionLevel
         }
         else if(dayCounter == 3){
             this.dialog = this.yuEvent
             this.event = 'yu'
+            this.eventAffectionLevel = yuAffectionLevel
         }
         else{
             this.dialog = this.thaneEvent
@@ -93,7 +97,7 @@ class Events extends Phaser.Scene {
 
         this.buttons = [choice1, choice2, choice3]
 
-        this.buttonSelector = this.add.image(0, 0, 'cursor-hand')
+        this.buttonSelector = this.add.image(OFFSCREEN_X, OFFSCREEN_Y, 'cursor-hand')
 
         //thane Dialouge Options
                                                                         //Option that loses Affection
@@ -113,7 +117,7 @@ class Events extends Phaser.Scene {
         //Yu Dialouge Options
         this.yuOption1 = this.add.text(centerX, this.buttons[0].y, 'Of course! Here you go!',textConfig).setOrigin(0.5).setVisible(false)
         //Option that gains Affection
-        this.yuOption2 = this.add.text(centerX, this.buttons[1].y, 'Hmm, how about we go through the assignment together and I\'ll help you put.',textConfig).setOrigin(0.5).setVisible(false)
+        this.yuOption2 = this.add.text(centerX, this.buttons[1].y, 'Hmm, how about we go through the assignment together and I\'ll help you out.',textConfig).setOrigin(0.5).setVisible(false)
         //Option that gives no Affection
         this.yuOption3 = this.add.text(centerX, this.buttons[2].y, 'You should do the assignment yourself.',textConfig).setOrigin(0.5).setVisible(false)
 
@@ -124,17 +128,17 @@ class Events extends Phaser.Scene {
     confirmSelection(){
         if(this.selectedButtonIndex == 0){
             //Option that loses Affection
-            thaneAffectionLevel -= 1
+            this.eventAffectionLevel -= 1
             this.dialogLine = 3
         }
         else if(this.selectedButtonIndex == 1){
             //Option to give most affection
-            thaneAffectionLevel += 3
+            this.eventAffectionLevel += 3
             this.dialogLine = 4
         }
         else if(this.selectedButtonIndex == 2){
             //Option that gives little Affection
-            thaneAffectionLevel += 1
+            this.eventAffectionLevel += 1
             this.dialogLine = 5
         }
 
@@ -155,6 +159,7 @@ class Events extends Phaser.Scene {
             this.yuOption3.setVisible(false)
         }
 
+        this.buttonSelector.x = OFFSCREEN_X
     }
 
     update(){

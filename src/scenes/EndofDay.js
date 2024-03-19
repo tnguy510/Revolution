@@ -46,13 +46,15 @@ class EndofDay extends Phaser.Scene {
             thaneAffectionLevel = 0
         }
 
+        this.daysLeft = 7 - dayCounter
         this.thaneAffectionText = this.add.text(centerX, centerY / 3, 'Thane Affection: ' + thaneAffectionLevel, textConfig).setOrigin(0.5).setVisible(false)
         this.rodAffectionText = this.add.text(centerX, this.thaneAffectionText.y + 50, 'Rod Affection: ' + rodAffectionLevel, textConfig).setOrigin(0.5).setVisible(false)
         this.yuAffectionText = this.add.text(centerX, this.rodAffectionText.y + 50, 'Yu Affection: ' + yuAffectionLevel, textConfig).setOrigin(0.5).setVisible(false)
+        this.daysLeftText = this.add.text(centerX, this.yuAffectionText.y + 50, 'Days Left: ' + this.daysLeft, textConfig).setOrigin(0.5).setVisible(false)
+
         
         console.log('dayCounter:')
         console.log(dayCounter)
-        console.log("end of day")
     }
 
     update(){
@@ -69,6 +71,7 @@ class EndofDay extends Phaser.Scene {
             this.thaneAffectionText.setVisible(true)
             this.rodAffectionText.setVisible(true)
             this.yuAffectionText.setVisible(true)
+            this.daysLeftText.setVisible(true)
         }
     }
 }

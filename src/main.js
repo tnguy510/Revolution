@@ -1,10 +1,7 @@
-//Sstarting integration in json file
-//Maybe check typeText to check for what scene it is in and pause the json file in order to
-//ask for player input
 //Errors:
 
-//To Do List: Add in Rod and Yu 2nd events. 
-//First event on day 0 will be the introduction to the Princes
+//To Do List:
+//First event on day 0 will be the introduction to the Princes. With the way the days are set up mayBE 7th day event is a study day
 //Look into being able to remember current position in the subject jsons
 //Exam section
 //Audio and sound elements

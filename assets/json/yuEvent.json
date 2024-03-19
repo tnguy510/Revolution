@@ -31,11 +31,11 @@
         },
         {
             "speaker": "yu",
-            "dialog": "This was fun. I'll see you around Taylor"
+            "dialog": "This was fun. I'll see you around Taylor."
         },
         {   
             "speaker": "narrator",
-            "dialog": "And with your que to leave you both head back to class.",
+            "dialog": "And with your cue to leave you both head back to class.",
             "newSpeaker": "true"
         }
     ]

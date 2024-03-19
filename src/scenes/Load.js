@@ -33,7 +33,7 @@ class Load extends Phaser.Scene {
         this.load.json('thaneDialog', 'json/thaneEvent.json')
         this.load.json('thaneDialog2', 'json/thaneEvent2.json')
         this.load.json('rodDialog', 'json/rodEvent.json')
-        //this.load.json('rodDialog2', 'json/rodEvent.json')
+        this.load.json('rodDialog2', 'json/rodEvent2.json')
         this.load.json('yuDialog', 'json/yuEvent.json')
         //this.load.json('yuDialog2', 'json/yuEvent.json')
 
@@ -43,7 +43,7 @@ class Load extends Phaser.Scene {
         this.load.bitmapFont('mixSerif_font', 'font/MixSerif.png', 'font/MixSerif.xml')
 
         classCounter = 0
-        dayCounter = 1
+        dayCounter = 4
         thaneAffectionLevel = 0
         rodAffectionLevel = 0
         yuAffectionLevel = 0
@@ -122,6 +122,17 @@ class Load extends Phaser.Scene {
                             }
                         }
                         else if(scene == scene.scene.get("eventScene")){
+                            //Branches for what prince it is
+                            if(scene.event == 'thane'){
+                                thaneAffectionLevel = scene.eventAffectionLevel
+                            }
+                            else if(scene.event == 'rod'){
+                                rodAffectionLevel = scene.eventAffectionLevel
+                            }
+                            else if(scene.event == 'yu'){
+                                yuAffectionLevel = scene.eventAffectionLevel
+                            }
+                            //
                             scene.scene.start('classScene')
                         }
                         //Only happens if the dialog json file runs out of lines. Other wise the update if in Classroom.js kicks in first
