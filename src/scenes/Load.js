@@ -14,11 +14,20 @@ class Load extends Phaser.Scene {
         this.load.image('Thane', 'img/characters/Anime_Thane.png')
         this.load.image('Yu', 'img/characters/Anime_Yu.png')
 
-        this.load.image('minerva', 'img/characters/minerva.png')
-
         this.load.image('dialogbox', 'img/dialogbox.png')
+
+        //backgrounds
+        this.load.image('cafeteriaBG', 'img/BGs/cafeteria_bg.png')
         this.load.image('classroomBG', 'img/BGs/classroom_BG.png')
+        this.load.image('courtyardBG', 'img/BGs/courtyard_BG.png')
+        this.load.image('examBG', 'img/BGs/exam_bg.png')
+        this.load.image('hallwayBG', 'img/BGs/hallway_BG.png')
+        this.load.image('libraryBG', 'img/BGs/library_BG.png')
+        this.load.image('princeIntroBG', 'img/BGs/Prince_Intro_BG.png')
+        this.load.image('thaneEventTwoBG', 'img/BGs/thaneEvent2_BG.png')
+        this.load.image('titleScreenBG', 'img/BGs/Title_screen_BG.png')
         
+        //Option Boxes
         this.load.image('glass-panel', 'Kennys UI Pack-Space Expansion/PNG/glassPanel.png')
         this.load.image('cursor-hand', 'Kennys UI Pack-Space Expansion/PNG/cursor_hand.png')
 
@@ -30,20 +39,25 @@ class Load extends Phaser.Scene {
         this.load.json('etiquetteDialog', 'json/etiquette.json')
 
         //event dialogs
+        this.load.json('princeIntroDialog', 'json/princeIntro.json')
         this.load.json('thaneDialog', 'json/thaneEvent.json')
         this.load.json('thaneDialog2', 'json/thaneEvent2.json')
         this.load.json('rodDialog', 'json/rodEvent.json')
         this.load.json('rodDialog2', 'json/rodEvent2.json')
         this.load.json('yuDialog', 'json/yuEvent.json')
-        //this.load.json('yuDialog2', 'json/yuEvent.json')
+        this.load.json('yuDialog2', 'json/yuEvent2.json')
 
 
         // load bitmap font
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
         this.load.bitmapFont('mixSerif_font', 'font/MixSerif.png', 'font/MixSerif.xml')
 
+        //Sound
+        this.load.audio('background music', 'keys-of-moon-white-petals(chosic.com).mp3')
+
         classCounter = 0
-        dayCounter = 4
+        ettiqueteLine = 0
+        dayCounter = 0
         thaneAffectionLevel = 0
         rodAffectionLevel = 0
         yuAffectionLevel = 0
@@ -51,7 +65,13 @@ class Load extends Phaser.Scene {
     }
 
     create(){
-
+        //background noise logic
+        this.bgm = this.sound.add('background music', {
+        loop: true,
+        volume: 0.75,
+        })
+        this.sound.pauseOnBlur = false
+        this.bgm.play()
     }
 
     update(){
@@ -67,6 +87,7 @@ class Load extends Phaser.Scene {
         }
     }
 
+    //typeText function by Nathan Altice. Modified by Trish Nguyen
     typeText(scene) {
         // lock input while typing
         scene.dialogTyping = true

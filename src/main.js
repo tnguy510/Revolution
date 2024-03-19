@@ -1,11 +1,12 @@
-//Errors:
+//Name: Trish Nguyen
+//Phaser Components used. Camerias, text objects, tween manager(through Nathan's function), timers(through Nation's function),
+//global variables
 
-//To Do List:
-//First event on day 0 will be the introduction to the Princes. With the way the days are set up mayBE 7th day event is a study day
-//Look into being able to remember current position in the subject jsons
-//Exam section
-//Audio and sound elements
-
+//Disclaimer: Class dialouge does not have enoug material to make it through the week and there is no final exam at the end of the week
+//to close out the game
+//I believe that the sheer amount of writing that went into the game should count for extra polish as well as
+//working with Nathan's function which, while documented very well, gave me a couple bugs that I had to debug myself without
+//the help of the community
 
 "use strict"
 
@@ -15,8 +16,7 @@ let config = {
     width: 1280,
     height: 720,
     pixelArt: true,
-    scene: [Load, Keys, Title, Settings, Intro, Classroom, Events, Events2, EndofDay, StudyEvent]
-    //Load, Title, Intro, Classroom, WeekEvents, SpecialEvents
+    scene: [Load, Keys, Title, Settings, Credits, Intro, Classroom, Events, Events2, EndofDay, Exam]
 }
 
 const game = new Phaser.Game(config)
@@ -49,9 +49,9 @@ const tweenDuration = 500
 let cursors = null
 
 let menuConfig = {
-    fontFamily: 'Sans Serif',
-    fontSize: '48px',
-    color: '#FFFFFF',
+    fontFamily: 'Mix Serif',
+    fontSize: '72px',
+    color: '#F1c232',
     align: 'middle',
     padding: {
         top: 5,
@@ -62,7 +62,7 @@ let menuConfig = {
 let textConfig = {
     fontFamily: 'Arial',
     fontSize: '16px',
-    color: '#FFFFFF',
+    color: '#ffffff',
     align: 'middle',
     padding: {
         top: 5,
@@ -72,5 +72,5 @@ let textConfig = {
 
 var keyUP, keyDOWN, keySPACE, keyESC
 let playerName
-var classCounter, dayCounter
+var classCounter, dayCounter, ettiqueteLine
 var thaneAffectionLevel, rodAffectionLevel, yuAffectionLevel

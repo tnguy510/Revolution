@@ -3,20 +3,15 @@ class Title extends Phaser.Scene {
         super("titleScene")
     }
 
-    preload()
-    {
-        this.load.image('glass-panel', 'assets/Kennys UI Pack-Space Expansion/PNG/glassPanel.png')
-        this.load.image('cursor-hand', 'assets/Kennys UI Pack-Space Expansion/PNG/cursor_hand.png')
-    }
-
     create() {
+        this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'titleScreenBG').setScale(.75).setOrigin(0.5, 0.5)
+
         // add title text
         this.add.text(centerX, centerY / 3, 'REVOLUTION', menuConfig).setOrigin(0.5)
         //this.add.text(centerX, centerY, 'Press SPACE to start', menuConfig).setOrigin(0.5)
 
         const playButton = this.add.image(centerX, centerY, 'glass-panel').setDisplaySize(300, 100).setInteractive()
         this.add.text(playButton.x, playButton.y, 'Press SPACE to start').setOrigin(0.5)
-        //playButton.setTintFill(0xffffff)
         const settingsButton = this.add.image(playButton.x, playButton.y + 100, 'glass-panel').setDisplaySize(300, 100).setInteractive()
         this.add.text(settingsButton.x, settingsButton.y, 'Settings').setOrigin(0.5)
 
@@ -77,6 +72,9 @@ class Title extends Phaser.Scene {
         }
         if(this.selectedButtonIndex == 1){
             this.scene.start("settingScene");
+        }
+        if(this.selectedButtonIndex == 2){
+            this.scene.start("creditScene");
         }
     }
 

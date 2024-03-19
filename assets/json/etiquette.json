@@ -11,11 +11,19 @@
         },
         {
             "speaker": "teacher",
+            "dialog": "Dignity is everything in fine dining. Make sure to remember that."
+        },
+        {
+            "speaker": "teacher",
             "dialog": "Do not wipe your mouth on your sleeve- you'll ruin your fabrics. Use a napkin."
         },
         {
             "speaker": "teacher",
             "dialog": "On that topic, Napkins are to be placed over your left shoulder or left wrist and used."
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "You should not be taking such big bites anyway that should cause that big of a stain."
         },
         {
             "speaker": "teacher",
@@ -40,7 +48,23 @@
         },
         {
             "speaker": "claire",
-            "dialog": ""
+            "dialog": "I bet you're one of those people commoner. You seem to be that type of pig."
+        },
+        {
+            "speaker": "claire",
+            "dialog": "I bet you're one of those people commoner. You seem to be that type of pig."
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "When participating in a formal dinner if you would like to step out the proper form is to have your utensils cross over each in an X"
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "In order to signal to the staff that you have not quite finished."
+        },
+        {
+            "speaker": "teacher",
+            "dialog": "Do not allow your the end of your utensils to touch the tablecloth."
         }
     ]
 ]

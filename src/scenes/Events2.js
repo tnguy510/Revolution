@@ -22,6 +22,7 @@ class Events2 extends Phaser.Scene {
         // parse dialog from JSON file
         this.thaneEvent = this.cache.json.get('thaneDialog2')
         this.rodEvent = this.cache.json.get('rodDialog2')
+        this.yuEvent = this.cache.json.get('yuDialog2')
         //FORMAT OF JSON FILE SHOULD BE:
         //Read 3 lines, then present choice
         //Lines 4-8, Dialogue for Index 0 then present 2nd choice(if wanted)
@@ -33,25 +34,25 @@ class Events2 extends Phaser.Scene {
         
         if(dayCounter == 4){
             this.dialog = this.thaneEvent
+            this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'thaneEventTwoBG').setScale(.75).setOrigin(0.5, 0.5)
             this.event = 'thane'
             this.eventAffectionLevel = thaneAffectionLevel
         }
         else if(dayCounter == 5){
             this.dialog = this.rodEvent
+            this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'courtyardBG').setScale(.75).setOrigin(0.5, 0.5)
             this.event = 'rod'
             this.eventAffectionLevel = rodAffectionLevel
         }
         else if(dayCounter == 6){
             this.dialog = this.yuEvent
+            this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'courtyardBG').setScale(.75).setOrigin(0.5, 0.5)
             this.event = 'yu'
             this.eventAffectionLevel = yuAffectionLevel
         }
         else{
             this.dialog = this.thaneEvent
         }
-
-
-        this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
 
         const choice1 = this.add.image(OFFSCREEN_X, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
@@ -124,6 +125,9 @@ class Events2 extends Phaser.Scene {
         //Option that gives no Affection
         this.yuOption3 = this.add.text(centerX, this.buttons[2].y, '"Hmm sorry I\'m not good at poetry. Bye!"',textConfig).setOrigin(0.5).setVisible(false)
 
+        this.yuOption4 = this.add.text(centerX, this.buttons[0].y, '"How about they just accept they won\'t see each other again."',textConfig).setOrigin(0.5).setVisible(false)
+        this.yuOption5 = this.add.text(centerX, this.buttons[1].y, '"How about they meet each other within the rules."',textConfig).setOrigin(0.5).setVisible(false)
+        this.yuOption6 = this.add.text(centerX, this.buttons[2].y, '"How about they plan to escape their circumstances."',textConfig).setOrigin(0.5).setVisible(false)
         this.titleScene.selectButton(0, this)
         this.cameras.main.fadeIn(1000)
     }

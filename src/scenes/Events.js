@@ -33,21 +33,25 @@ class Events extends Phaser.Scene {
         //Deciding what day it is for each prince
         if(dayCounter == 1){
             this.dialog = this.thaneEvent
+            this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'hallwayBG').setScale(.75).setOrigin(0.5, 0.5)
             this.event = 'thane'
             this.eventAffectionLevel = thaneAffectionLevel
         }
         else if(dayCounter == 2){
             this.dialog = this.rodEvent
+            this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'cafeteriaBG').setScale(.75).setOrigin(0.5, 0.5)
             this.event = 'rod'
             this.eventAffectionLevel = rodAffectionLevel
         }
         else if(dayCounter == 3){
             this.dialog = this.yuEvent
+            this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'libraryBG').setScale(.75).setOrigin(0.5, 0.5)
             this.event = 'yu'
             this.eventAffectionLevel = yuAffectionLevel
         }
         else{
-            this.dialog = this.thaneEvent
+            this.dialog = this.cache.json.get('princeIntroDialog')
+            this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'princeIntroBG').setScale(.75).setOrigin(0.5, 0.5)
         }
 
         //Segment of if Events are randomized. Discarded for time
@@ -56,8 +60,6 @@ class Events extends Phaser.Scene {
         //var dialogRandom = this.rodEvent
         //this.event = dialogRandom
         //this.dialog = dialogRandom
-
-        this.background = this.add.image(game.config.width / 2, game.config.height / 2, 'classroomBG').setScale(.75).setOrigin(0.5, 0.5)
 
         const choice1 = this.add.image(OFFSCREEN_X, centerY / 3, 'glass-panel').setDisplaySize(500, 100).setInteractive()
         const choice2 = this.add.image(choice1.x, choice1.y + 150, 'glass-panel').setDisplaySize(500, 100).setInteractive()
@@ -117,7 +119,7 @@ class Events extends Phaser.Scene {
         //Yu Dialouge Options
         this.yuOption1 = this.add.text(centerX, this.buttons[0].y, 'Of course! Here you go!',textConfig).setOrigin(0.5).setVisible(false)
         //Option that gains Affection
-        this.yuOption2 = this.add.text(centerX, this.buttons[1].y, 'Hmm, how about we go through the assignment together and I\'ll help you out.',textConfig).setOrigin(0.5).setVisible(false)
+        this.yuOption2 = this.add.text(centerX, this.buttons[1].y, 'How about we go through the assignment together and I\'ll help.',textConfig).setOrigin(0.5).setVisible(false)
         //Option that gives no Affection
         this.yuOption3 = this.add.text(centerX, this.buttons[2].y, 'You should do the assignment yourself.',textConfig).setOrigin(0.5).setVisible(false)
 
@@ -168,7 +170,7 @@ class Events extends Phaser.Scene {
             this.scene.start("titleScene");
         }
 
-        if(this.dialogLine == 1 && !this.dialogTyping){
+        if(this.dialogLine == 3 && !this.dialogTyping){
             this.loadScene.moveButtons(centerX, this)
             this.buttonAppear = true
 

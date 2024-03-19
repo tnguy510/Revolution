@@ -5,7 +5,7 @@ class Classroom extends Phaser.Scene {
     create(){
         // dialog variables
         this.dialogConvo = 0			// current "conversation"
-        this.dialogLine = 0			    // current line of conversation
+        this.dialogLine = ettiqueteLine	    // current line of conversation
         this.dialogSpeaker = null		// current speaker
         this.dialogLastSpeaker = null	// last speaker
         this.dialogTyping = false		// flag to lock player input while text is "typing"
@@ -56,7 +56,6 @@ class Classroom extends Phaser.Scene {
         this.loadScene.typeText(this)     
 
         this.titleScene = this.scene.get('titleScene')
-        this.event = null
         
         //selection buttons items
         this.buttonAppear = false
@@ -81,6 +80,7 @@ class Classroom extends Phaser.Scene {
             this.loadScene.typeText(this) // trigger dialog
             //Ends the Classroom section after reading 3 lines.
             if(this.dialogLine % 4 == 0 ){
+                ettiqueteLine = this.dialogLine - 1
                 console.log('Class Counter:')
                 console.log(classCounter)
                 //Checking if 2 class periods just happened
